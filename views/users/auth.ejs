@@ -1,0 +1,102 @@
+<!doctype html>
+<html>
+
+  <% include ../partials/head_auth %>
+
+<style>
+  body{
+     padding-bottom:80px;
+   }
+  .posts{
+    text-align: center;
+  }
+  a,a:hover,p {
+    text-decoration: none;
+    color:black;
+  }
+  .container-fluid {
+  padding-right: 75px;
+  padding-left: 75px;
+  margin-right: auto;
+  margin-left: auto;
+}
+  </style>
+
+<body>
+  <div class="container_auth">
+    <div class="span3 well">
+        <center>
+        <img src="<%=user.avatar %>" name="aboutme" width="180" height="180" class="img-circle"></a><h3>Hey, <%=user.username %></h3>
+        <a class="btn btn-success" href="/posts/new" role="button">Create a Post</a>
+        <a class="btn btn-warning" href="/users/<%= user.id %>/edit" role="button">Edit Profile</a>
+        <% if(unread.length === 0) { %>
+          <a class="btn btn-primary" href="/messages" role="button">Messages</a>
+        <% } else { %>
+          <a class="btn btn-primary" href="/messages" role="button">Messages <span class="badge"><%=unread.length%></span></a>
+          <% } %>
+        <a class="btn btn-danger" href="/auth/logout" role="button">Logout</a>
+      </center>
+    </div>
+  </div>
+  <div class="container-fluid">
+    <div class="row">
+  <div class="col-md-4">
+    <div class="posts">
+  <h2>All Posts</h2>
+  <hr>
+  </div>
+  <% posts.forEach(function (post) { %>    <a href="/posts/<%= post.id %>">
+    <div class="card">
+    <div class="card-block">
+      <h4 class="card-title"><%=post.title %></h4>
+      <h6 class="card-subtitle mb-2 text-muted"><%=post.username%></h6>
+      <p class="card-text"><%=post.body %></p>
+    </div>
+  </div>
+  </a>
+  <% }) %>
+  </div>
+  <div class="col-md-4">
+    <div class="posts">
+  <h2>My Posts</h2>
+  <hr>
+  </div>
+  <% my_posts.forEach(function (post) { %>
+    <div class="card">
+      <a href="/posts/<%= post.id %>">
+      <div class="card-block">
+      <p class="card-text"><%=post.body %></p>
+        </div>
+    </a>
+  </div>
+  <% }) %>
+  </div>
+  <div class="col-md-4">
+    <div class="posts">
+  <h2>Goals</h2>
+  <hr>
+</div>
+<% if(user.goal1 === null || user.goal2 === null || user.goal3 === null ) { %>
+  <div class="span3 well">
+  <center><h5>there are no goals ... yet</h5></center>
+</div>
+  <% } else { %>
+    <div class="span3 well">
+          <p>1. <%= user.goal1 %></p>
+          <p>2. <%= user.goal2 %></p>
+          <p>3. <%= user.goal3 %></p>
+    </div>
+    <% } %>
+    <div class="posts">
+  <h2>Buddies</h2>
+  <hr>
+  </div>
+  <% buddies.forEach(function (buddy) { %>
+      <a href="/users/<%=buddy.id%>"><div class="span3 well">
+        <img src="<%=buddy.avatar%>" width="40" height="40" class="img-circle"><h3 style="float:right;margin:0;"><%=buddy.username %></h3>
+      </div></a>
+      <% }) %>
+  </div>
+  </div>
+</body>
+</html>
