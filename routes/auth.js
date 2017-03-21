@@ -25,30 +25,32 @@ function authorizedAdmin(req, res, next) {
 }
 
 router.get('/', authorizedUser,  function (req, res) {
-  let userID = req.session.user.id;
-  knex.from('users').innerJoin('messages', 'users.id', 'messages.sender_id').where('messages.user_id', userID).then(function (messages) {
-  knex.from('messages').where({read: false, user_id: userID}).then(function (unread) {
-  knex('users').where('id', userID).first().then(function (user){
-    knex('users').innerJoin('posts', 'users.id', 'posts.user_id').then(function(posts) {
-      knex('posts').where('user_id', userID).then(function (my_posts){
-        knex('comments').where('user_id', userID).then(function (comments){
-         knex('users').where('id', 'in', knex.select('buddy_id').from('buddies').where('user_id', userID)).then(function (buddies){
-          res.render('users/auth', {
-            user: user,
-            posts: posts,
-            my_posts: my_posts,
-            comments: comments,
-            buddies: buddies,
-            messages: messages,
-            unread: unread,
-                })
-              })
-            })
-          })
-        })
-      })
-    })
-  })
+//   let userID = req.session.user.id;
+//   knex.from('users').innerJoin('messages', 'users.id', 'messages.sender_id').where('messages.user_id', userID).then(function (messages) {
+//   knex.from('messages').where({read: false, user_id: userID}).then(function (unread) {
+//   knex('users').where('id', userID).first().then(function (user){
+//     knex('users').innerJoin('posts', 'users.id', 'posts.user_id').then(function(posts) {
+//       knex('posts').where('user_id', userID).then(function (my_posts){
+//         knex('comments').where('user_id', userID).then(function (comments){
+//          knex('users').where('id', 'in', knex.select('buddy_id').from('buddies').where('user_id', userID)).then(function (buddies){
+//           res.render('users/auth', {
+//             user: user,
+//             posts: posts,
+//             my_posts: my_posts,
+//             comments: comments,
+//             buddies: buddies,
+//             messages: messages,
+//             unread: unread,
+//                 })
+//               })
+//             })
+//           })
+//         })
+//       })
+//     })
+//   })
+// })
+res.render('users/auth')
 })
 
 router.get('/signup', function (req, res, next) {
@@ -67,18 +69,9 @@ router.post('/signup', function (req, res, next) {
       let hash = bcrypt.hashSync(req.body.hashed_password, 12);
       createAvatar.generateAvatar(function(created_avatar){
         return knex('users').insert({
-          username: req.body.username,
-          hashed_password: hash,
-          first_name: req.body.first_name,
-          last_name: req.body.last_name,
           email: req.body.email,
-          admin: req.body.admin,
+          hashed_password: hash,
           avatar: created_avatar,
-        }, "*").then(function (users) {
-          return knex('buddies').insert({
-            buddy_id: 1,
-            user_id: users[0].id,
-          })
         }).then(function (){
           res.redirect('/auth/login');
         })
