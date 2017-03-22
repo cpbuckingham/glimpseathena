@@ -23,7 +23,27 @@ function authorizedAdmin(req, res, next) {
     res.redirect('/')
   }
 }
-
+router.get('/maps',authorizedUser, function (req, res, next) {
+  res.render('auth/icons')
+})
+router.get('/notifications',authorizedUser, function (req, res, next) {
+  res.render('auth/notifications')
+})
+router.get('/table',authorizedUser, function (req, res, next) {
+  res.render('auth/table')
+})
+router.get('/typography',authorizedUser, function (req, res, next) {
+  res.render('auth/typography')
+})
+router.get('/user',authorizedUser, function (req, res, next) {
+  res.render('auth/user')
+})
+router.get('/template',authorizedUser, function (req, res, next) {
+  res.render('auth/template')
+})
+router.get('/upgrade',authorizedUser, function (req, res, next) {
+  res.render('auth/upgrade')
+})
 router.get('/',  function (req, res) {
 //   let userID = req.session.user.id;
 //   knex.from('users').innerJoin('messages', 'users.id', 'messages.sender_id').where('messages.user_id', userID).then(function (messages) {
@@ -50,15 +70,15 @@ router.get('/',  function (req, res) {
 //     })
 //   })
 // })
-res.render('users/auth')
+res.render('auth/auth')
 })
 
 router.get('/signup', function (req, res, next) {
-  res.render('users/signup')
+  res.render('auth/signup')
 })
 
 router.get('/login', function (req, res, next) {
-  res.render('users/login');
+  res.render('auth/login');
 })
 
 router.post('/signup', function (req, res, next) {
