@@ -23,61 +23,43 @@ function authorizedAdmin(req, res, next) {
     res.redirect('/')
   }
 }
-router.get('/icons',authorizedUser, function (req, res, next) {
-  res.render('auth/icons')
-})
-router.get('/maps',authorizedUser, function (req, res, next) {
-  res.render('auth/maps')
-})
-router.get('/notifications',authorizedUser, function (req, res, next) {
-  res.render('auth/notifications')
-})
-router.get('/table',authorizedUser, function (req, res, next) {
-  res.render('auth/table')
-})
-router.get('/typography',authorizedUser, function (req, res, next) {
-  res.render('auth/typography')
-})
+
+router.get('/dashboard',  function (req, res) {
+  let userID = req.session.user.id;
+  knex('users').where('id', userID).first().then(function (user){
+           res.render('dashboard/dashboard', {
+            user: user,
+          })
+        })
+      })
+
+router.get('/patients',authorizedUser, function (req, res, next) {
+  let userID = req.session.user.id;
+  knex('users').where('id', userID).first().then(function (user){
+           res.render('dashboard/patients', {
+            user: user,
+          })
+        })
+      })
+
 router.get('/user',authorizedUser, function (req, res, next) {
   let userID = req.session.user.id;
   knex('users').where('id', userID).first().then(function (user){
-  res.render('auth/user', {
+  res.render('dashboard/user', {
     user: user,
+    })
   })
 })
-})
-router.get('/template',authorizedUser, function (req, res, next) {
-  res.render('auth/template')
-})
-router.get('/upgrade',authorizedUser, function (req, res, next) {
-  res.render('auth/upgrade')
-})
-router.get('/',  function (req, res) {
+
+router.get('/messages',authorizedUser, function (req, res, next) {
   let userID = req.session.user.id;
-//   knex.from('users').innerJoin('messages', 'users.id', 'messages.sender_id').where('messages.user_id', userID).then(function (messages) {
-//   knex.from('messages').where({read: false, user_id: userID}).then(function (unread) {
   knex('users').where('id', userID).first().then(function (user){
-//     knex('users').innerJoin('posts', 'users.id', 'posts.user_id').then(function(posts) {
-//       knex('posts').where('user_id', userID).then(function (my_posts){
-//         knex('comments').where('user_id', userID).then(function (comments){
-//          knex('users').where('id', 'in', knex.select('buddy_id').from('buddies').where('user_id', userID)).then(function (buddies){
-           res.render('auth/auth', {
+           res.render('dashboard/messages', {
             user: user,
-//             posts: posts,
-//             my_posts: my_posts,
-//             comments: comments,
-//             buddies: buddies,
-//             messages: messages,
-//             unread: unread,
-                })
-//               })
-//             })
-//           })
-//         })
+          })
+        })
       })
-//     })
-//   })
- })
+
 
 router.get('/signup', function (req, res, next) {
   res.render('auth/signup')
@@ -98,8 +80,9 @@ router.post('/signup', function (req, res, next) {
           email: req.body.email,
           hashed_password: hash,
           avatar: created_avatar,
+          username: req.body.username,
         }).then(function (){
-          res.redirect('/auth');
+          res.redirect('/auth/login');
         })
       });
     } else {
@@ -119,7 +102,7 @@ router.post('/login', function (req, res, next) {
         if(result){
           req.session.user = user;
           res.cookie("loggedin", true);
-          res.redirect('/auth');
+          res.redirect('/auth/dashboard');
         } else {
           res.redirect('/auth/login')
         }

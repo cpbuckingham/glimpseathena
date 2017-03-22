@@ -37,15 +37,19 @@
 		    -->
 
 			<div class="logo">
-				<a href="http://www.creative-tim.com" class="simple-text">
-					Creative Tim
+				<a href="/auth/dashboard" class="simple-text">
+          <% if (!user.username){%>
+          Hello
+          <% }else{ %>
+          <%= user.username%>
+          <% } %>
 				</a>
 			</div>
 
 			<div class="sidebar-wrapper">
 						<ul class="nav">
 								<li>
-										<a href="/auth">
+									<a href="/auth/dashboard">
 												<i class="material-icons">dashboard</i>
 												<p>Dashboard</p>
 										</a>
@@ -57,39 +61,21 @@
 										</a>
 								</li>
 								<li>
-										<a href="/auth/table">
+										<a href="/auth/patients">
 												<i class="material-icons">content_paste</i>
-												<p>Table List</p>
+												<p>Patients</p>
 										</a>
 								</li>
 								<li>
-										<a href="/auth/typography">
-												<i class="material-icons">library_books</i>
-												<p>Typography</p>
-										</a>
-								</li>
-								<li>
-										<a href="/auth/icons">
-												<i class="material-icons">bubble_chart</i>
-												<p>Icons</p>
-										</a>
-								</li>
-								<li>
-										<a href="/auth/maps">
-												<i class="material-icons">location_on</i>
-												<p>Maps</p>
-										</a>
-								</li>
-								<li>
-										<a href="/auth/notifications">
-												<i class="material-icons text-gray">notifications</i>
-												<p>Notifications</p>
+										<a href="/auth/messages">
+											<i class="material-icons">library_books</i>
+												<p>Messages</p>
 										</a>
 								</li>
 				<li class="active-pro">
-										<a href="/auth/logout">
-												<i class="material-icons">unarchive</i>
-												<p>Logout</p>
+					<a href="/auth/logout">
+							<i class="material-icons">unarchive</i>
+							<p>Logout</p>
 										</a>
 								</li>
 						</ul>

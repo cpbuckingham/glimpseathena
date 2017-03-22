@@ -24,7 +24,7 @@ function authorizedAdmin(req, res, next) {
 }
 
 router.get('/', [authorizedUser, authorizedAdmin], function(req, res, next) {
-  res.render('auth/auth')
+  res.render('dashboard/dashboard')
 })
 
 router.get('/:id', authorizedUser, function (req, res) {
