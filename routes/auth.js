@@ -24,7 +24,7 @@ function authorizedAdmin(req, res, next) {
   }
 }
 
-router.get('/', authorizedUser,  function (req, res) {
+router.get('/',  function (req, res) {
 //   let userID = req.session.user.id;
 //   knex.from('users').innerJoin('messages', 'users.id', 'messages.sender_id').where('messages.user_id', userID).then(function (messages) {
 //   knex.from('messages').where({read: false, user_id: userID}).then(function (unread) {
@@ -63,7 +63,7 @@ router.get('/login', function (req, res, next) {
 
 router.post('/signup', function (req, res, next) {
   knex('users').where({
-    username: req.body.username
+    email: req.body.email
   }).first().then(function(user){
     if(!user){
       let hash = bcrypt.hashSync(req.body.hashed_password, 12);
@@ -73,18 +73,18 @@ router.post('/signup', function (req, res, next) {
           hashed_password: hash,
           avatar: created_avatar,
         }).then(function (){
-          res.redirect('/auth/login');
+          res.redirect('/auth');
         })
       });
     } else {
-      res.redirect('/users');
+      res.redirect('/auth/signup');
     }
   })
 })
 
 router.post('/login', function (req, res, next) {
   knex('users').where({
-    username: req.body.username
+    email: req.body.email
   }).first().then(function (user) {
     if(!user){
       res.send('no username')
