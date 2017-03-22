@@ -6,7 +6,7 @@
 	<link rel="icon" type="image/png" href="../img/favicon.png" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-	<title>Material Dashboard by Creative Tim</title>
+	<title>Glimpse | AthenaHealth</title>
 
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
@@ -38,7 +38,11 @@
 
 			<div class="logo">
 				<a href="http://www.creative-tim.com" class="simple-text">
-					Creative Tim
+          <% if (!user.username){%>
+          Hello
+          <% }else{ %>
+          <%= user.username%>
+          <% } %>
 				</a>
 			</div>
 
@@ -59,25 +63,7 @@
 	                <li>
 	                    <a href="/auth/table">
 	                        <i class="material-icons">content_paste</i>
-	                        <p>Table List</p>
-	                    </a>
-	                </li>
-	                <li>
-	                    <a href="/auth/typography">
-	                        <i class="material-icons">library_books</i>
-	                        <p>Typography</p>
-	                    </a>
-	                </li>
-	                <li>
-	                    <a href="/auth/icons">
-	                        <i class="material-icons">bubble_chart</i>
-	                        <p>Icons</p>
-	                    </a>
-	                </li>
-	                <li>
-	                    <a href="/auth/maps">
-	                        <i class="material-icons">location_on</i>
-	                        <p>Maps</p>
+	                        <p>Patients</p>
 	                    </a>
 	                </li>
 	                <li>
@@ -87,9 +73,9 @@
 	                    </a>
 	                </li>
 					<li class="active-pro">
-	                    <a href="/auth/upgrade">
-	                        <i class="material-icons">unarchive</i>
-	                        <p>Upgrade to PRO</p>
+            <a href="/auth/logout">
+                <i class="material-icons">unarchive</i>
+                <p>Logout</p>
 	                    </a>
 	                </li>
 	            </ul>

@@ -23,8 +23,11 @@ function authorizedAdmin(req, res, next) {
     res.redirect('/')
   }
 }
-router.get('/maps',authorizedUser, function (req, res, next) {
+router.get('/icons',authorizedUser, function (req, res, next) {
   res.render('auth/icons')
+})
+router.get('/maps',authorizedUser, function (req, res, next) {
+  res.render('auth/maps')
 })
 router.get('/notifications',authorizedUser, function (req, res, next) {
   res.render('auth/notifications')
@@ -36,7 +39,12 @@ router.get('/typography',authorizedUser, function (req, res, next) {
   res.render('auth/typography')
 })
 router.get('/user',authorizedUser, function (req, res, next) {
-  res.render('auth/user')
+  let userID = req.session.user.id;
+  knex('users').where('id', userID).first().then(function (user){
+  res.render('auth/user', {
+    user: user,
+  })
+})
 })
 router.get('/template',authorizedUser, function (req, res, next) {
   res.render('auth/template')
@@ -45,33 +53,31 @@ router.get('/upgrade',authorizedUser, function (req, res, next) {
   res.render('auth/upgrade')
 })
 router.get('/',  function (req, res) {
-//   let userID = req.session.user.id;
+  let userID = req.session.user.id;
 //   knex.from('users').innerJoin('messages', 'users.id', 'messages.sender_id').where('messages.user_id', userID).then(function (messages) {
 //   knex.from('messages').where({read: false, user_id: userID}).then(function (unread) {
-//   knex('users').where('id', userID).first().then(function (user){
+  knex('users').where('id', userID).first().then(function (user){
 //     knex('users').innerJoin('posts', 'users.id', 'posts.user_id').then(function(posts) {
 //       knex('posts').where('user_id', userID).then(function (my_posts){
 //         knex('comments').where('user_id', userID).then(function (comments){
 //          knex('users').where('id', 'in', knex.select('buddy_id').from('buddies').where('user_id', userID)).then(function (buddies){
-//           res.render('users/auth', {
-//             user: user,
+           res.render('auth/auth', {
+            user: user,
 //             posts: posts,
 //             my_posts: my_posts,
 //             comments: comments,
 //             buddies: buddies,
 //             messages: messages,
 //             unread: unread,
-//                 })
+                })
 //               })
 //             })
 //           })
 //         })
-//       })
+      })
 //     })
 //   })
-// })
-res.render('auth/auth')
-})
+ })
 
 router.get('/signup', function (req, res, next) {
   res.render('auth/signup')
