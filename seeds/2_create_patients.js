@@ -1,0 +1,68 @@
+exports.seed = function ( knex, Promise ) {
+    return knex( 'patients' ).del()
+        .then( function () {
+            return Promise.all( [
+              //password = test
+                knex( 'patients' ).insert( {
+                    id: 1,
+                    user_id: 1,
+                    email: 'kenzi@gmail.com',
+                    full_name: 'Kenzi Garcia',
+                    avatar: 'https://octodex.github.com/images/octoliberty.png',
+                    address: "281 Middle Crk",
+                    city: "Buda",
+                    country: "USA",
+                    postal_code: "78610",
+                    survey: ""
+                } ),
+                knex( 'patients' ).insert( {
+                    id: 2,
+                    user_id: 1,
+                    email: 'taryn@gmail.com',
+                    full_name: 'Taryn Davis',
+                    avatar: 'https://octodex.github.com/images/femalecodertocat.png',
+                    address: "181 Harlen Creek",
+                    city: "Buda",
+                    country: "USA",
+                    postal_code: "78612",
+                    survey: ""
+                } ),
+                knex( 'patients' ).insert( {
+                    id: 3,
+                    user_id: 1,
+                    email: 'sammi@gmail.com',
+                    full_name: 'Sammi Guerrero',
+                    avatar: 'https://octodex.github.com/images/daftpunktocat-thomas.gif',
+                    address: "77 Chicon Rd",
+                    city: "San Marcos",
+                    country: "USA",
+                    postal_code: "78664",
+                    survey: ""
+                } ),
+                knex( 'patients' ).insert( {
+                    id: 4,
+                    user_id: 2,
+                    email: 'roland@gmail.com',
+                    full_name: 'Roland Guerrero',
+                    avatar: 'https://octodex.github.com/images/foundingfather_v2.png',
+                    address: "312 Heartfelt Rd",
+                    city: "San Marcos",
+                    country: "USA",
+                    postal_code: "78666",
+                    survey: ""
+                } ),
+                knex( 'patients' ).insert( {
+                    id: 5,
+                    user_id: 3,
+                    email: 'markmelody1978@gmail.com',
+                    full_name: 'Mark Buckingham',
+                    avatar: 'https://octodex.github.com/images/daftpunktocat-guy.gif',
+                    address: "17 Woonsockett Ct",
+                    city: "Silver Spring",
+                    country: "USA",
+                    postal_code: "20905",
+                    survey: ""
+                } )
+            ] );
+        } );
+      };

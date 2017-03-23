@@ -36,11 +36,14 @@ router.get('/dashboard',  function (req, res) {
 router.get('/patients',authorizedUser, function (req, res, next) {
   let userID = req.session.user.id;
   knex('users').where('id', userID).first().then(function (user){
+    knex('patients').where('user_id', userID).then(function (patients){
            res.render('dashboard/patients', {
             user: user,
+            patients, patients,
           })
         })
       })
+    })
 
 router.get('/user',authorizedUser, function (req, res, next) {
   let userID = req.session.user.id;
@@ -96,7 +99,7 @@ router.post('/login', function (req, res, next) {
     email: req.body.email
   }).first().then(function (user) {
     if(!user){
-      res.send('no username')
+      res.render('partials/404')
     } else {
       bcrypt.compare(req.body.hashed_password, user.hashed_password, function(err, result) {
         if(result){
@@ -104,7 +107,7 @@ router.post('/login', function (req, res, next) {
           res.cookie("loggedin", true);
           res.redirect('/auth/dashboard');
         } else {
-          res.redirect('/auth/login')
+          res.render('partials/404')
         }
       })
     }
