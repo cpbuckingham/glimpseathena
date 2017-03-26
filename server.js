@@ -15,6 +15,7 @@ const methodOverride = require('method-override');
 const users = require('./routes/users');
 const auth = require('./routes/auth');
 const patients = require('./routes/patients');
+const messages = require('./routes/messages');
 
 
 app.set('view engine', 'ejs');
@@ -29,6 +30,7 @@ app.use(cookieSession({
 app.use('/users', users);
 app.use('/auth', auth);
 app.use('/patients', patients);
+app.use('/messages', messages);
 
 app.listen(port, function () {
   console.log('hello from', port);

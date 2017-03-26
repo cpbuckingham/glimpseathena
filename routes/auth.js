@@ -57,9 +57,13 @@ router.get('/user',authorizedUser, function (req, res, next) {
 router.get('/messages',authorizedUser, function (req, res, next) {
   let userID = req.session.user.id;
   knex('users').where('id', userID).first().then(function (user){
+    knex('messages').where('user_id', userID).then(function (messages){
            res.render('dashboard/messages', {
             user: user,
+            messages: messages,
           })
+          console.log(messages);
+        })
         })
       })
 

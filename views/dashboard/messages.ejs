@@ -127,13 +127,15 @@
 											<table class="table">
 												<tbody>
 													<tr>
-														<td>Patient2 - Your service was great</td>
+														<% messages.forEach(function (messages) { %>
+														<td><%=messages.note%></td>
 														<td class="td-actions text-right">
 															<button type="button" rel="tooltip" title="Reply" class="btn btn-primary btn-simple btn-xs">
 																<i class="material-icons">reply</i>
 															</button>
 														</td>
 													</tr>
+													<% }) %>
 												</tbody>
 											</table>
 										</div>
@@ -141,8 +143,10 @@
 											<table class="table">
 												<tbody>
 													<tr>
-														<td>Patient1 - I don't feel great with the medications you gave me</td>
-														<td class="td-actions text-right">
+														<% messages.forEach(function (messages) { %>
+														<td><%=messages.note%></td>
+														<% }) %>
+																												<td class="td-actions text-right">
 															<button type="button" rel="tooltip" title="Reply" class="btn btn-primary btn-simple btn-xs">
                                 <i class="material-icons">reply</i>
 															</button>
@@ -157,7 +161,7 @@
 									</div>
 								</div>
 							</div>
-              <button type="submit" class="btn btn-primary pull-right">New Message</button>
+							<a href="/messages/new"><button type="submit" class="btn btn-primary pull-right">New Patient</button></a>
 						</div>
 					</div>
 				</div>
