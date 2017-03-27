@@ -1616,7 +1616,7 @@
 	}
 
 	header.major {
-		margin: 0 0 3.5em 0;
+		margin: 0 0 1.5em 0;
 	}
 
 		header.major h2, header.major h3, header.major h4, header.major h5, header.major h6 {
@@ -2641,7 +2641,7 @@
 		}
 
 		.wrapper.style1 {
-			background-color: #0A480D;
+			background-color: #1d242a;
 			color: #c7ebe8;
 		}
 
@@ -2953,7 +2953,7 @@
 			}
 
 		.wrapper.style4 {
-			background-color: transparent;
+			background-color: #1d242a;
 		}
 
 		.wrapper.style5 {
