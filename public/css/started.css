@@ -2641,7 +2641,7 @@
 		}
 
 		.wrapper.style1 {
-			background-color: #2E7D32;
+			background-color: #0A480D;
 			color: #c7ebe8;
 		}
 
@@ -3192,7 +3192,7 @@
 
 				#menu ul > li > a {
 					border: 0;
-					color: inherit;
+					color: #FFE844;
 					display: block;
 					font-size: 0.8em;
 					letter-spacing: 0.225em;
