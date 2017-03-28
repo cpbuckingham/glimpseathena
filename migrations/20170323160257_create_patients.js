@@ -8,7 +8,7 @@ exports.up = function(knex, Promise) {
       table.string('avatar');
       table.string('address').defaultTo("")
       table.string('city').defaultTo("")
-      table.string('country').defaultTo("")
+      table.string('state').defaultTo("")
       table.string('postal_code').defaultTo("")
       table.string('survey').defaultTo("");
       table.timestamps(true, true);

@@ -35,10 +35,14 @@ router.get('/:id', authorizedUser, function (req, res, next) {
 
 router.get('/:id/edit', authorizedUser, function (req, res, next) {
   let patientID = req.params.id;
+  let userID = req.session.user.id;
+  knex('users').where('id', userID).first().then(function (user){
   knex('patients').where('id', patientID).first().then(function (patient){
            res.render('patients/edit', {
             patient: patient,
+            user: user
     })
+  })
   })
 })
 
@@ -58,13 +62,27 @@ router.post('/', authorizedUser, function(req, res, next) {
     avatar: created_avatar,
     address: req.body.address,
     city: req.body.city,
-    country: req.body.country,
+    state: req.body.state,
     postal_code: req.body.postal_code,
     user_id: knex.select('id').from('users').where('id', userID)
   }).then(function (){
     res.redirect('/auth/patients')
   })
 });
+})
+
+router.put('/:id' ,function (req, res, next) {
+  let patientID = req.params.id;
+  knex('patients').where('id', patientID).update({
+    email: req.body.email,
+    full_name: req.body.full_name,
+    address: req.body.address,
+    city: req.body.city,
+    state: req.body.state,
+    postal_code: req.body.postal_code,
+  }).then(function (){
+    res.redirect('/auth/patients')
+  } )
 })
 
 module.exports = router

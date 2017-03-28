@@ -35,9 +35,9 @@
 	                    </a>
 	                </li>
                   <li class="active">
-	                    <a href="/auth/messages">
+	                    <a href="/auth/surveys">
                         <i class="material-icons">library_books</i>
-	                        <p>Messages</p>
+	                        <p>Surveys</p>
 	                    </a>
 	                </li>
 					<li class="active-pro">
@@ -60,7 +60,7 @@
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 						</button>
-						<a href="/auth/messages"class="navbar-brand">
+						<a href="/auth/surveys"class="navbar-brand">
 							<% if (!user.username){%>
               Welcome, <%= user.email%>
               <% }else{ %>
@@ -107,13 +107,13 @@
 												<li class="active">
 													<a href="#profile" data-toggle="tab">
 														<i class="material-icons">message</i>
-														New
+														Completed
 													<div class="ripple-container"></div></a>
 												</li>
 												<li class="">
 													<a href="#messages" data-toggle="tab">
 														<i class="material-icons">book</i>
-														Old
+														Incomplete
 													<div class="ripple-container"></div></a>
 												</li>
 											</ul>
@@ -127,15 +127,13 @@
 											<table class="table">
 												<tbody>
 													<tr>
-														<% messages.forEach(function (messages) { %>
-														<td><%=messages.note%></td>
+														<td>yeah</td>
 														<td class="td-actions text-right">
 															<button type="button" rel="tooltip" title="Reply" class="btn btn-primary btn-simple btn-xs">
 																<i class="material-icons">reply</i>
 															</button>
 														</td>
 													</tr>
-													<% }) %>
 												</tbody>
 											</table>
 										</div>
@@ -143,9 +141,7 @@
 											<table class="table">
 												<tbody>
 													<tr>
-														<% messages.forEach(function (messages) { %>
-														<td><%=messages.note%></td>
-														<% }) %>
+														<td>man</td>
 																												<td class="td-actions text-right">
 															<button type="button" rel="tooltip" title="Reply" class="btn btn-primary btn-simple btn-xs">
                                 <i class="material-icons">reply</i>

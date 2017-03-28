@@ -34,10 +34,10 @@
 									</a>
 							</li>
 							<li>
-									<a href="/auth/messages">
-										<i class="material-icons">library_books</i>
-											<p>Messages</p>
-									</a>
+								<a href="/auth/surveys">
+									<i class="material-icons">library_books</i>
+										<p>Surveys</p>
+								</a>
 							</li>
 			<li class="active-pro">
 				<a href="/auth/logout">
@@ -76,7 +76,7 @@
 									<p class="hidden-lg hidden-md">Notifications</p>
 								</a>
 								<ul class="dropdown-menu">
-									<li><a href="#">You have 1 new Message(s)</a></li>
+									<li><a href="#">You have 1 new completed survey(s)</a></li>
 								</ul>
 							</li>
 							<li>
@@ -102,57 +102,47 @@
 	                    <div class="col-md-12">
 	                        <div class="card card-plain">
 	                            <div class="card-header" data-background-color="purple">
-	                                <h4 class="title">Patient Responses</h4>
-	                                <p class="category">Listing patients and their responses</p>
+	                                <h4 class="title">Patients</h4>
+	                                <p class="category">Listing patients and your actions</p>
 	                            </div>
-	                            <div class="card-content table-responsive">
-	                                <table class="table table-hover">
-	                                    <thead>
+															<div class="card-content table-responsive">
+																	<table class="table table-hover">
+																			<thead>
 																				<th>ID</th>
 																				<th>Name</th>
 																				<th>Password</th>
 																				<th>City</th>
 																				<th>Actions</th>
-	                                    </thead>
+																			</thead>
 																			<% patients.forEach(function (patient) { %>
-	                                    <tbody>
-	                                        <tr>
-	                                        	<td><%=patient.id%></td>
+																			<tbody>
+																					<tr>
+																						<td><%=patient.id%></td>
 																						<td><%=patient.full_name%></td>
 																						<td><%=patient.password%></td>
 																						<td><%=patient.city%></td>
 																						<td class="td-actions text-right">
 																							<form style="padding-right:10px;" action="/patients/<%=patient.id%>/edit"method="GET">
-																					      <input type="submit" class="btn btn-warning" value="Edit">
-																					    </form>
+																								<input type="submit" class="btn btn-warning" value="Edit">
+																							</form>
 																							<form style="padding-right:10px;" action="/patients/<%=patient.id%>?_method=DELETE" method="POST">
-																					      <input type="submit" class="btn btn-danger" value="Delete">
-																					    </form>
+																								<input type="submit" onclick="return confirm('Are you sure you want to delete this patient?');" class="btn btn-danger" value="Delete">
+																							</form>
 																							<form style="padding-right:10px;" action="/patients/<%=patient.id%>?_method=DELETE" method="POST">
-																								<input type="submit" class="btn btn-success" value="Email">
+																								<input type="submit" onclick="return confirm('Are you sure you want to delete this patient?');" class="btn btn-success" value="Email">
 																							</form>
 																						</td>
 																						<% }) %>
-	                                        </tr>
-	                                    </tbody>
-	                                </table>
-	                            </div>
+																					</tr>
+																			</tbody>
+																	</table>
+															</div>
 															<a href="/patients/new"><button type="submit" class="btn btn-primary pull-right">New Patient</button></a>
 	                        </div>
 	                    </div>
 	                </div>
 	            </div>
 	        </div>
-
-
-
-					<footer class="footer">
-						<div class="container-fluid">
-							<p class="copyright pull-right">
-								Made with love by <a href="http://www.cpbuckingham.com">Cam </a>&copy; <script>document.write(new Date().getFullYear())</script>
-							</p>
-						</div>
-					</footer>
 	    </div>
 	</div>
 

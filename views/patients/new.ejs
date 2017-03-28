@@ -10,11 +10,7 @@
 
 			<div class="logo">
 				<a href="/auth/dashboard" class="simple-text">
-          <% if (!user.username){%>
-          Glimpse
-          <% }else{ %>
-          <%= user.username%>
-          <% } %>
+					Glimpse
 				</a>
 			</div>
 
@@ -64,8 +60,13 @@
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 						</button>
-						<a class="navbar-brand" href="/patients/new">Add Patients</a>
-					</div>
+						<a href="/auth/patients"class="navbar-brand">
+							<% if (!user.username){%>
+              Welcome, <%= user.email%>
+              <% }else{ %>
+              Welcome, <%= user.username%>
+              <% } %>
+											</div>
 					<div class="collapse navbar-collapse">
 						<ul class="nav navbar-nav navbar-right">
 							<li class="dropdown">
@@ -137,8 +138,8 @@
 	                                        </div>
 	                                        <div class="col-md-4">
 												<div class="form-group label-floating">
-													<label class="control-label">Country</label>
-													<input type="text" name="country" class="form-control" >
+													<label class="control-label">State</label>
+													<input type="text" name="state" class="form-control" >
 												</div>
 	                                        </div>
 	                                        <div class="col-md-4">

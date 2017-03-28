@@ -46,7 +46,7 @@ router.put('/:id', authorizedUser,function (req, res, next) {
     company_name: req.body.company_name,
     address: req.body.address,
     city: req.body.city,
-    country: req.body.country,
+    state: req.body.state,
     postal_code: req.body.postal_code,
   }).then(function (){
     res.redirect('/auth/user')

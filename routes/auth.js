@@ -37,7 +37,7 @@ router.get('/patients',authorizedUser, function (req, res, next) {
   let userID = req.session.user.id;
   knex('users').where('id', userID).first().then(function (user){
     knex('patients').where('user_id', userID).then(function (patients){
-           res.render('dashboard/patients', {
+           res.render('dashboard/patient', {
             user: user,
             patients, patients,
           })
@@ -54,18 +54,19 @@ router.get('/user',authorizedUser, function (req, res, next) {
   })
 })
 
-router.get('/messages',authorizedUser, function (req, res, next) {
-  let userID = req.session.user.id;
-  knex('users').where('id', userID).first().then(function (user){
-    knex('messages').where('user_id', userID).then(function (messages){
-           res.render('dashboard/messages', {
-            user: user,
-            messages: messages,
-          })
-          console.log(messages);
-        })
-        })
-      })
+        router.get('/surveys',authorizedUser, function (req, res, next) {
+          let userID = req.session.user.id;
+          knex('users').where('id', userID).first().then(function (user){
+            knex('patients').where('user_id', userID).then(function (patients){
+                   res.render('dashboard/survey', {
+                    user: user,
+                    patients, patients,
+                  })
+                })
+              })
+            })
+
+
 
 
 router.get('/signup', function (req, res, next) {
@@ -111,7 +112,7 @@ router.post('/login', function (req, res, next) {
           res.cookie("loggedin", true);
           res.redirect('/auth/dashboard');
         } else {
-          res.render('partials/404')
+          res.render('partials/403')
         }
       })
     }

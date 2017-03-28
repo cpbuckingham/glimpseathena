@@ -11,7 +11,7 @@ exports.seed = function ( knex, Promise ) {
                     avatar: 'https://octodex.github.com/images/octoliberty.png',
                     address: "281 Middle Crk",
                     city: "Buda",
-                    country: "USA",
+                    state: "TX",
                     postal_code: "78610",
                     survey: ""
                 } ),
@@ -23,7 +23,7 @@ exports.seed = function ( knex, Promise ) {
                     avatar: 'https://octodex.github.com/images/femalecodertocat.png',
                     address: "181 Harlen Creek",
                     city: "Buda",
-                    country: "USA",
+                    state: "TX",
                     postal_code: "78612",
                     survey: ""
                 } ),
@@ -35,7 +35,7 @@ exports.seed = function ( knex, Promise ) {
                     avatar: 'https://octodex.github.com/images/daftpunktocat-thomas.gif',
                     address: "77 Chicon Rd",
                     city: "San Marcos",
-                    country: "USA",
+                    state: "TX",
                     postal_code: "78664",
                     survey: ""
                 } ),
@@ -47,7 +47,7 @@ exports.seed = function ( knex, Promise ) {
                     avatar: 'https://octodex.github.com/images/foundingfather_v2.png',
                     address: "312 Heartfelt Rd",
                     city: "San Marcos",
-                    country: "USA",
+                    state: "TX",
                     postal_code: "78666",
                     survey: ""
                 } ),
@@ -59,7 +59,7 @@ exports.seed = function ( knex, Promise ) {
                     avatar: 'https://octodex.github.com/images/daftpunktocat-guy.gif',
                     address: "17 Woonsockett Ct",
                     city: "Silver Spring",
-                    country: "USA",
+                    state: "MD",
                     postal_code: "20905",
                     survey: ""
                 } )

@@ -16,7 +16,7 @@ exports.seed = function ( knex, Promise ) {
                     company_name: "Microsoft",
                     address: "281 Middle Crk",
                     city: "Buda",
-                    country: "USA",
+                    state: "TX",
                     postal_code: "78610",
                     bio: "It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
                 } ),
@@ -33,7 +33,7 @@ exports.seed = function ( knex, Promise ) {
                     company_name: "American",
                     address: "281 Middle Crk",
                     city: "Buda",
-                    country: "USA",
+                    state: "TX",
                     postal_code: "78610",
                     bio: "It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
                 } ),
@@ -50,7 +50,7 @@ exports.seed = function ( knex, Promise ) {
                     company_name: "Lone Star Realty",
                     address: "312 Laurel Hill",
                     city: "San Marcos",
-                    country: "USA",
+                    state: "TX",
                     postal_code: "78666",
                     bio: "It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
                 } )

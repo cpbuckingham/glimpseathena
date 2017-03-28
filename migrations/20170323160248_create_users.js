@@ -13,7 +13,7 @@ exports.up = function(knex, Promise) {
       table.string('company_name').defaultTo("")
       table.string('address').defaultTo("")
       table.string('city').defaultTo("")
-      table.string('country').defaultTo("")
+      table.string('state').defaultTo("")
       table.string('postal_code').defaultTo("")
       table.timestamps(true, true);
     })
