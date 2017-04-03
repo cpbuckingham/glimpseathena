@@ -58,10 +58,13 @@ router.get('/user',authorizedUser, function (req, res, next) {
           let userID = req.session.user.id;
           knex('users').where('id', userID).first().then(function (user){
             knex('patients').where('user_id', userID).then(function (patients){
+              knex('surveys').where('user_id', userID).then(function (surveys){
                    res.render('dashboard/survey', {
                     user: user,
                     patients, patients,
+                    surveys:surveys,
                   })
+                })
                 })
               })
             })

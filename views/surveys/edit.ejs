@@ -34,10 +34,10 @@
 												<p>Patients</p>
 										</a>
 								</li>
-                <li class="active">
+								<li class="active">
 										<a href="/auth/surveys">
 											<i class="material-icons">library_books</i>
-												<p>Surveys</p>
+												<p>Messages</p>
 										</a>
 								</li>
 				<li class="active-pro">
@@ -77,7 +77,7 @@
 										<p class="hidden-lg hidden-md">Notifications</p>
 									</a>
 									<ul class="dropdown-menu">
-										<li><a href="/auth/surveys">You have 1 new completed survey(s)</a></li>
+										<li><a href="/auth/surveys">You have 1 new submission(s)</a></li>
 									</ul>
 								</li>
 								<li>
@@ -100,20 +100,20 @@
 	        <div class="content">
 	            <div class="container-fluid">
 	                <div class="row">
-	                    <div class="col-md-9">
+	                    <div class="col-md-12">
 	                        <div class="card">
 	                            <div class="card-header" data-background-color="orange">
 	                                <h4 class="title">New Survey</h4>
 									<p class="category">Add a new Survey for Patients</p>
 	                            </div>
 	                            <div class="card-content">
-																<form action="/surveys" method="post">
+																<form action="/patients" method="post">
 
                                         <div class="row">
 																						<div class="col-md-6">
 													<div class="form-group label-floating">
 														<label class="control-label">Question 1</label>
-														<input type="text" name="question_1" class="form-control" required >
+														<input type="text" name="question_1" class="form-control" value="<%=survey.question_1%>" >
 													</div>
 																						</div>
                                           </div>
@@ -122,7 +122,7 @@
 														<div class="col-md-6">
 														<div class="form-group label-floating">
 															<label class="control-label">Question 2</label>
-															<input type="text" name="question_2" class="form-control" required>
+															<input type="text" name="question_2" class="form-control" value="<%=survey.question_2%>" >
 														</div>
 														</div>
                           </div>
@@ -131,7 +131,7 @@
 	                                        <div class="col-md-6">
 												<div class="form-group label-floating">
 													<label class="control-label">Question 3</label>
-													<input type="text" name="question_3" class="form-control" required>
+													<input type="text" name="question_3" class="form-control" value="<%=survey.question_3%>" >
 												</div>
 	                                        </div>
 	                                    </div>
@@ -140,7 +140,7 @@
 	                                        <div class="col-md-6">
 												<div class="form-group label-floating">
 													<label class="control-label">Question 4</label>
-													<input type="text" name="question_4" class="form-control" required>
+													<input type="text" name="question_4" class="form-control" value="<%=survey.question_4%>" >
 												</div>
 	                                        </div>
                                         </div>
@@ -149,7 +149,7 @@
 	                                        <div class="col-md-6">
 												<div class="form-group label-floating">
 													<label class="control-label">Question 5</label>
-													<input type="text" name="question_5" class="form-control" required>
+													<input type="text" name="question_5" class="form-control" value="<%=survey.question_5%>" >
 												</div>
 	                                        </div>
                                         </div>
