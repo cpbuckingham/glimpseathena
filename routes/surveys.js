@@ -54,6 +54,8 @@ router.post('/', authorizedUser, function(req, res, next) {
   let userID = req.session.user.id;
   knex('surveys').insert({
     user_id: userID,
+    title: req.body.title,
+    type: req.body.type,
     question_1: req.body.question_1,
     question_2: req.body.question_2,
     question_3: req.body.question_3,
@@ -67,12 +69,13 @@ router.post('/', authorizedUser, function(req, res, next) {
 router.put('/:id' ,function (req, res, next) {
   let surveyID = req.params.id;
   knex('surveys').where('id', surveyID).update({
-    // email: req.body.email,
-    // full_name: req.body.full_name,
-    // address: req.body.address,
-    // city: req.body.city,
-    // state: req.body.state,
-    // postal_code: req.body.postal_code,
+    title: req.body.title,
+    type: req.body.type,
+    question_1: req.body.question_1,
+    question_2: req.body.question_2,
+    question_3: req.body.question_3,
+    question_4: req.body.question_4,
+    question_5: req.body.question_5,
   }).then(function (){
     res.redirect('/auth/surveys')
   } )

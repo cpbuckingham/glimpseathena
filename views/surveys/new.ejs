@@ -109,6 +109,26 @@
 	                            <div class="card-content">
 																<form action="/surveys" method="post">
 
+                                  <div class="row">
+                                    <div class="col-md-6">
+                  <div class="form-group label-floating">
+                    <label class="control-label">Title</label>
+                    <input type="text" name="title" class="form-control" required >
+                  </div>
+                                    </div>
+
+                                  <div class="input-field col-md-6">
+                                    <select name="type">
+                                      <option value="" disabled selected>Choose your type</option>
+                                      <option value="Office Entry Survey">Office Entry Survey</option>
+                                      <option value="Office Exit Survey">Office Exit Survey</option>
+                                      <option value="Pharmacy Entry Survey">Pharmacy Entry Survey</option>
+                                      <option value="Pharmacy Exit Survey">Pharmacy Exit Survey</option>
+                                    </select>
+                                    <label>Survey Type</label>
+                                  </div>
+                                </div>
+
                                         <div class="row">
 																						<div class="col-md-6">
 													<div class="form-group label-floating">
@@ -168,11 +188,17 @@
 
 </body>
 
+
 	<!--   Core JS Files   -->
 	<script src="../js/jquery-3.1.0.min.js" type="text/javascript"></script>
 	<script src="../js/bootstrap.min.js" type="text/javascript"></script>
 	<script src="../js/material.min.js" type="text/javascript"></script>
 
+<script>
+$(document).ready(function() {
+  $('select').material_select();
+});
+</script>
 	<!--  Charts Plugin -->
 	<script src="../js/chartist.min.js"></script>
 

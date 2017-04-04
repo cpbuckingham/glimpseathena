@@ -38,6 +38,7 @@ router.put('/:id', authorizedUser,function (req, res, next) {
   let userID = req.session.user.id;
   knex('users').where('id', userID).update({
     username: req.body.username,
+    role: req.body.role,
     first_name: req.body.first_name,
     last_name: req.body.last_name,
     email: req.body.email,
