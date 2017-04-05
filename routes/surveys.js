@@ -35,9 +35,13 @@ router.get('/new', authorizedUser, function (req, res, next) {
 
 router.get('/:id', authorizedUser, function (req, res, next) {
   let surveyID = req.params.id;
+  let userID = req.session.user.id;
+  knex('users').where('id', userID).first().then(function (user){
   knex('surveys').where('id', surveyID).first().then(function (survey){
            res.render('surveys/edit', {
             survey: survey,
+            user: user,
+          })
     })
   })
 })

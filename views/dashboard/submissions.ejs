@@ -7,7 +7,7 @@
 
 	<div class="wrapper">
 
-	    <div class="sidebar" data-color="orange" data-image="../img/sidebar-1.jpg">
+	    <div class="sidebar" data-color="red" data-image="../img/sidebar-1.jpg">
 			<div class="logo">
 				<a href="/auth/dashboard" class="simple-text">
           Glimpse
@@ -34,13 +34,13 @@
 	                        <p>Patients</p>
 	                    </a>
 	                </li>
-                  <li class="active">
+                  <li>
 	                    <a href="/auth/surveys">
                         <i class="material-icons">library_books</i>
 	                        <p>Surveys</p>
 	                    </a>
 	                </li>
-                  <li>
+                  <li class="active">
                       <a href="/auth/submissions">
                         <i class="material-icons">message</i>
                           <p>Submissions</p>
@@ -106,28 +106,31 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="card card-plain">
-                                                <div class="card-header" data-background-color="orange">
-      	                                <h4 class="title">Surveys</h4>
-      	                                <p class="category">Listing surveys and your actions</p>
+                                                <div class="card-header" data-background-color="red">
+      	                                <h4 class="title">Submissions</h4>
+      	                                <p class="category">Listing completed surveys by your paitients</p>
       	                            </div>
       															<div class="card-content table-responsive">
       																	<table class="table table-hover">
       																			<thead>
-      																				<th>Title</th>
+      																				<th>Patient</th>
       																				<th>Type</th>
+                                              <th>Time Completed</th>
                                               <th>Actions</th>
+
       																			</thead>
                                             <% surveys.forEach(function (survey) { %>
       																			<tbody>
                                               <tr>
                                                 <td><%=survey.title%></td>
                                                 <td><%=survey.type%></td>
+                                                <td><%=survey.type%></td>
                                                 <td class="td-actions text-right">
                                                   <form style="padding-right:10px;" action="/surveys/<%=survey.id%>"method="GET">
-                                                    <input type="submit" class="btn btn-primary" value="Edit">
+                                                    <input type="submit" class="btn btn-primary" value="View">
                                                   </form>
                                                   <form style="padding-right:10px;" action="/surveys/<%=survey.id%>?_method=DELETE" method="POST">
-                                                    <input type="submit" onclick="return confirm('Are you sure you want to delete this survey?');" class="btn btn-danger" value="Delete">
+                                                    <input type="submit" onclick="return confirm('Are you sure you want to delete this submission?');" class="btn btn-danger" value="Delete">
                                                   </form>
                                                 </td>
                                                 <% }) %>
@@ -135,7 +138,6 @@
       																			</tbody>
       																	</table>
       															</div>
-                                    <a href="/surveys/new"><button type="submit" class="btn btn-warning pull-right">Add Survey</button></a>
       	                        </div>
       	                    </div>
       	                </div>

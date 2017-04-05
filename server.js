@@ -16,6 +16,7 @@ const users = require('./routes/users');
 const auth = require('./routes/auth');
 const patients = require('./routes/patients');
 const surveys = require('./routes/surveys');
+const submissions = require('./routes/submissions');
 
 
 app.set('view engine', 'ejs');
@@ -31,6 +32,7 @@ app.use('/users', users);
 app.use('/auth', auth);
 app.use('/patients', patients);
 app.use('/surveys', surveys);
+app.use('/submissions', submissions);
 
 app.listen(port, function () {
   console.log('hello from', port);

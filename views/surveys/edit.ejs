@@ -103,11 +103,31 @@
 	                    <div class="col-md-12">
 	                        <div class="card">
 	                            <div class="card-header" data-background-color="orange">
-	                                <h4 class="title">New Survey</h4>
-									<p class="category">Add a new Survey for Patients</p>
+	                                <h4 class="title">Edit Survey</h4>
+									<p class="category">Edit an existing Survey</p>
 	                            </div>
 	                            <div class="card-content">
-																<form action="/patients" method="post">
+																<form novalidate=""action="/surveys/<%= survey.id %>?_method=PUT" method="post">
+
+																	<div class="row">
+                                    <div class="col-md-6">
+                  <div class="form-group label-floating">
+                    <label class="control-label">Title</label>
+                    <input type="text" name="title" class="form-control" value="<%=survey.title%>" required >
+                  </div>
+                                    </div>
+
+                                  <div class="input-field col-md-6">
+                                    <select name="type" required>
+                                      <option value="<%=survey.type%>" disabled selected><%=survey.type%></option>
+                                      <option value="Office Entry Survey">Office Entry Survey</option>
+                                      <option value="Office Exit Survey">Office Exit Survey</option>
+                                      <option value="Pharmacy Entry Survey">Pharmacy Entry Survey</option>
+                                      <option value="Pharmacy Exit Survey">Pharmacy Exit Survey</option>
+                                    </select>
+                                    <label>Survey Type</label>
+                                  </div>
+                                </div>
 
                                         <div class="row">
 																						<div class="col-md-6">
@@ -154,7 +174,7 @@
 	                                        </div>
                                         </div>
 
-	                                    <button type="submit" class="btn btn-warning pull-right">Submit</button>
+	                                    <button type="submit" class="btn btn-warning pull-right">Update Survey</button>
 	                                    <div class="clearfix"></div>
 	                                </form>
 	                            </div>

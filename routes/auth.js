@@ -54,6 +54,17 @@ router.get('/user',authorizedUser, function (req, res, next) {
   })
 })
 
+router.get('/submissions',authorizedUser, function (req, res, next) {
+  let userID = req.session.user.id;
+  knex('users').where('id', userID).first().then(function (user){
+    knex('surveys').where('user_id', userID).then(function (surveys){
+  res.render('dashboard/submissions', {
+    user: user,
+    surveys:surveys,
+      })
+    })
+  })
+})
         router.get('/surveys',authorizedUser, function (req, res, next) {
           let userID = req.session.user.id;
           knex('users').where('id', userID).first().then(function (user){
