@@ -117,19 +117,18 @@
       																				<th>Type</th>
                                               <th>Time Completed</th>
                                               <th>Actions</th>
-
       																			</thead>
-                                            <% surveys.forEach(function (survey) { %>
+                                            <% submissions.forEach(function (submission) { %>
       																			<tbody>
                                               <tr>
-                                                <td><%=survey.title%></td>
-                                                <td><%=survey.type%></td>
-                                                <td><%=survey.type%></td>
+                                                <td><%=submission.title%></td>
+                                                <td><%=submission.type%></td>
+                                                <td><%=submission.type%></td>
                                                 <td class="td-actions text-right">
-                                                  <form style="padding-right:10px;" action="/surveys/<%=survey.id%>"method="GET">
+                                                  <form style="padding-right:10px;" action="/submissions/<%=submission.id%>"method="GET">
                                                     <input type="submit" class="btn btn-primary" value="View">
                                                   </form>
-                                                  <form style="padding-right:10px;" action="/surveys/<%=survey.id%>?_method=DELETE" method="POST">
+                                                  <form style="padding-right:10px;" action="/submissions/<%=submission.id%>?_method=DELETE" method="POST">
                                                     <input type="submit" onclick="return confirm('Are you sure you want to delete this submission?');" class="btn btn-danger" value="Delete">
                                                   </form>
                                                 </td>
