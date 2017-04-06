@@ -24,5 +24,17 @@ router.get('/new', authorizedUser, function (req, res, next) {
   })
 })
 
+router.get('/:id', authorizedUser, function (req, res, next) {
+  let userID = req.session.user.id;
+  knex('users').where('id', userID).first().then(function (user){
+    knex.from('surveys').innerJoin('submissions', 'surveys.id', 'submissions.user_id').innerJoin('patients','patients.id', 'patients.user_id').where('patients.user_id', userID).then(function (submissions){
+           res.render('submissions/single', {
+            user: user,
+            submissions: submissions,
+    })
+  })
+  })
+  })
+
 
 module.exports = router

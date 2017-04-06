@@ -27,32 +27,42 @@ function authorizedAdmin(req, res, next) {
 router.get('/dashboard',  function (req, res) {
   let userID = req.session.user.id;
   knex('users').where('id', userID).first().then(function (user){
+    knex.from('surveys').innerJoin('submissions', 'surveys.id', 'submissions.user_id').innerJoin('patients','patients.id', 'patients.user_id').where('patients.user_id', userID).then(function (submissions){
            res.render('dashboard/dashboard', {
             user: user,
+            submissions: submissions,
           })
         })
+      })
       })
 
 router.get('/patients',authorizedUser, function (req, res, next) {
   let userID = req.session.user.id;
   knex('users').where('id', userID).first().then(function (user){
     knex('patients').where('user_id', userID).then(function (patients){
+      knex.from('surveys').innerJoin('submissions', 'surveys.id', 'submissions.user_id').innerJoin('patients','patients.id', 'patients.user_id').where('patients.user_id', userID).then(function (submissions){
            res.render('dashboard/patient', {
             user: user,
             patients, patients,
+            submissions: submissions,
           })
         })
       })
+    })
     })
 
 router.get('/user',authorizedUser, function (req, res, next) {
   let userID = req.session.user.id;
   knex('users').where('id', userID).first().then(function (user){
+    knex.from('surveys').innerJoin('submissions', 'surveys.id', 'submissions.user_id').innerJoin('patients','patients.id', 'patients.user_id').where('patients.user_id', userID).then(function (submissions){
   res.render('dashboard/user', {
     user: user,
+    submissions: submissions,
     })
   })
 })
+})
+
 
 router.get('/submissions',authorizedUser, function (req, res, next) {
   let userID = req.session.user.id;
@@ -64,7 +74,6 @@ router.get('/submissions',authorizedUser, function (req, res, next) {
     surveys:surveys,
     submissions: submissions,
       })
-      console.log(submissions);
     })
   })
 })
@@ -76,15 +85,18 @@ router.get('/submissions',authorizedUser, function (req, res, next) {
           knex('users').where('id', userID).first().then(function (user){
             knex('patients').where('user_id', userID).then(function (patients){
               knex('surveys').where('user_id', userID).then(function (surveys){
+                knex.from('surveys').innerJoin('submissions', 'surveys.id', 'submissions.user_id').innerJoin('patients','patients.id', 'patients.user_id').where('patients.user_id', userID).then(function (submissions){
                    res.render('dashboard/survey', {
                     user: user,
                     patients, patients,
                     surveys:surveys,
+                    submissions: submissions,
                   })
                 })
                 })
               })
             })
+          })
 
 
 
