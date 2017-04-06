@@ -66,6 +66,7 @@ router.get('/user',authorizedUser, function (req, res, next) {
 
 router.get('/submissions',authorizedUser, function (req, res, next) {
   let userID = req.session.user.id;
+  knex.from('submissions').where({read: false, user_id: userID}).then(function (unread) {
   knex('users').where('id', userID).first().then(function (user){
     knex('surveys').where('user_id', userID).then(function (surveys){
       knex.from('surveys').innerJoin('submissions', 'surveys.id', 'submissions.user_id').innerJoin('patients','patients.id', 'patients.user_id').where('patients.user_id', userID).then(function (submissions){
@@ -73,7 +74,10 @@ router.get('/submissions',authorizedUser, function (req, res, next) {
     user: user,
     surveys:surveys,
     submissions: submissions,
+    unread: unread,
       })
+      console.log(unread);
+    })
     })
   })
 })
@@ -150,6 +154,7 @@ router.post('/login', function (req, res, next) {
     }
   })
 })
+
 
 router.get('/logout', function (req, res) {
   req.session = null;

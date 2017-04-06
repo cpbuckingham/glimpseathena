@@ -10,7 +10,6 @@ exports.up = function(knex, Promise) {
       table.string('city').defaultTo("")
       table.string('state').defaultTo("")
       table.string('postal_code').defaultTo("")
-      table.string('survey').defaultTo("");
       table.timestamps(true, true);
     })
 };

@@ -9,6 +9,7 @@ exports.up = function(knex, Promise) {
       table.string('answer_3').defaultTo("");
       table.string('answer_4').defaultTo("");
       table.string('answer_5').defaultTo("");
+      table.boolean('read').defaultTo(false);
       table.timestamps(true, true);
     })
 };

@@ -4,7 +4,6 @@ exports.seed = function ( knex, Promise ) {
             return Promise.all( [
               //password = test
                 knex( 'surveys' ).insert( {
-                    id: 1,
                     user_id: 1,
                     type: "Office Entry Survey",
                     title: "welcome to the office",
@@ -15,7 +14,6 @@ exports.seed = function ( knex, Promise ) {
                     question_5: 'Where did you get your prescription?',
                 } ),
                 knex( 'surveys' ).insert( {
-                    id: 2,
                     user_id: 1,
                     type: "Office Exit Survey",
                     title: "goodbye have a great day",

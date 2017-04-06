@@ -4,10 +4,9 @@ exports.seed = function ( knex, Promise ) {
             return Promise.all( [
               //password = test
                 knex( 'users' ).insert( {
-                    id: 1,
                     username: 'cpbuckingham',
                     email: 'cameron.p.buckingham@gmail.com',
-                    admin: false,
+                    admin: true,
                     first_name: 'Cam',
                     last_name: 'Buckingham',
                     hashed_password: '$2a$12$2fPhX9qJCLlVi0uXxttKPOhdHlC1x0THSLz5A1sjxVoZ5l6/C01ZK',
@@ -21,10 +20,9 @@ exports.seed = function ( knex, Promise ) {
                     bio: "It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
                 } ),
                 knex( 'users' ).insert( {
-                    id: 2,
                     username: 'lindszg',
                     email: 'lindszg@gmail.com',
-                    admin: false,
+                    admin: true,
                     first_name: 'Lindsey',
                     last_name: 'Buckingham',
                     hashed_password: '$2a$12$2fPhX9qJCLlVi0uXxttKPOhdHlC1x0THSLz5A1sjxVoZ5l6/C01ZK',
@@ -38,10 +36,9 @@ exports.seed = function ( knex, Promise ) {
                     bio: "It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
                 } ),
                 knex( 'users' ).insert( {
-                    id: 3,
                     username: 'tobig',
                     email: 'tobi@lsreg.com',
-                    admin: false,
+                    admin: true,
                     first_name: 'Tobi',
                     last_name: 'Guerrero',
                     hashed_password: '$2a$12$2fPhX9qJCLlVi0uXxttKPOhdHlC1x0THSLz5A1sjxVoZ5l6/C01ZK',

@@ -9,7 +9,6 @@ exports.up = function(knex, Promise) {
       table.string('question_3').defaultTo("");
       table.string('question_4').defaultTo("");
       table.string('question_5').defaultTo("");
-      table.boolean('submitted').defaultTo(false);
       table.timestamps(true, true);
     })
 };
