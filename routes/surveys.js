@@ -25,13 +25,16 @@ function authorizedAdmin(req, res, next) {
 
 router.get('/new', authorizedUser, function (req, res, next) {
   let userID = req.session.user.id;
+  knex.from('submissions').where({read: false, user_id: userID}).then(function (unread) {
   knex('users').where('id', userID).first().then(function (user){
     knex.from('surveys').innerJoin('submissions', 'surveys.id', 'submissions.user_id').innerJoin('patients','patients.id', 'patients.user_id').where('patients.user_id', userID).then(function (submissions){
     res.render('surveys/new', {
       userID: userID,
       user: user,
       submissions: submissions,
+      unread: unread,
     })
+  })
   })
 })
 })
@@ -39,6 +42,7 @@ router.get('/new', authorizedUser, function (req, res, next) {
 router.get('/:id', authorizedUser, function (req, res, next) {
   let surveyID = req.params.id;
   let userID = req.session.user.id;
+  knex.from('submissions').where({read: false, user_id: userID}).then(function (unread) {
   knex('users').where('id', userID).first().then(function (user){
   knex('surveys').where('id', surveyID).first().then(function (survey){
     knex.from('surveys').innerJoin('submissions', 'surveys.id', 'submissions.user_id').innerJoin('patients','patients.id', 'patients.user_id').where('patients.user_id', userID).then(function (submissions){
@@ -46,7 +50,9 @@ router.get('/:id', authorizedUser, function (req, res, next) {
             survey: survey,
             user: user,
             submissions: submissions,
+            unread: unread,
           })
+        })
     })
     })
   })

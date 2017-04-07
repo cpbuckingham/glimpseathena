@@ -20,7 +20,9 @@ exports.seed = function ( knex, Promise ) {
                     question_1: 'How did your appointment go?',
                     question_2: 'Did you feel comfident with your prognosis?',
                     question_3: 'Did you get another prescription?',
-                } ),
+                    question_4: 'How old are you?',
+                    question_5: 'Do you feel supported?',
+                } )
             ] );
         } );
       };

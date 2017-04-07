@@ -26,18 +26,22 @@ function authorizedAdmin(req, res, next) {
 
 router.get('/dashboard',  function (req, res) {
   let userID = req.session.user.id;
+  knex.from('submissions').where({read: false, user_id: userID}).then(function (unread) {
   knex('users').where('id', userID).first().then(function (user){
     knex.from('surveys').innerJoin('submissions', 'surveys.id', 'submissions.user_id').innerJoin('patients','patients.id', 'patients.user_id').where('patients.user_id', userID).then(function (submissions){
            res.render('dashboard/dashboard', {
             user: user,
             submissions: submissions,
+            unread: unread,
           })
+        })
         })
       })
       })
 
 router.get('/patients',authorizedUser, function (req, res, next) {
   let userID = req.session.user.id;
+  knex.from('submissions').where({read: false, user_id: userID}).then(function (unread) {
   knex('users').where('id', userID).first().then(function (user){
     knex('patients').where('user_id', userID).then(function (patients){
       knex.from('surveys').innerJoin('submissions', 'surveys.id', 'submissions.user_id').innerJoin('patients','patients.id', 'patients.user_id').where('patients.user_id', userID).then(function (submissions){
@@ -45,20 +49,25 @@ router.get('/patients',authorizedUser, function (req, res, next) {
             user: user,
             patients, patients,
             submissions: submissions,
+            unread: unread,
           })
         })
+      })
       })
     })
     })
 
 router.get('/user',authorizedUser, function (req, res, next) {
   let userID = req.session.user.id;
+  knex.from('submissions').where({read: false, user_id: userID}).then(function (unread) {
   knex('users').where('id', userID).first().then(function (user){
     knex.from('surveys').innerJoin('submissions', 'surveys.id', 'submissions.user_id').innerJoin('patients','patients.id', 'patients.user_id').where('patients.user_id', userID).then(function (submissions){
   res.render('dashboard/user', {
     user: user,
     submissions: submissions,
+    unread: unread,
     })
+  })
   })
 })
 })
@@ -69,14 +78,14 @@ router.get('/submissions',authorizedUser, function (req, res, next) {
   knex.from('submissions').where({read: false, user_id: userID}).then(function (unread) {
   knex('users').where('id', userID).first().then(function (user){
     knex('surveys').where('user_id', userID).then(function (surveys){
-      knex.from('surveys').innerJoin('submissions', 'surveys.id', 'submissions.user_id').innerJoin('patients','patients.id', 'patients.user_id').where('patients.user_id', userID).then(function (submissions){
+      knex.from('submissions').innerJoin('patients', 'submissions.patient_id', 'patients.id').innerJoin('surveys', 'submissions.survey_id', 'surveys.id').where('submissions.user_id', userID).then(function (submissions){
   res.render('dashboard/submissions', {
     user: user,
     surveys:surveys,
     submissions: submissions,
     unread: unread,
       })
-      console.log(unread);
+      console.log(submissions);
     })
     })
   })
@@ -86,6 +95,7 @@ router.get('/submissions',authorizedUser, function (req, res, next) {
 
         router.get('/surveys',authorizedUser, function (req, res, next) {
           let userID = req.session.user.id;
+          knex.from('submissions').where({read: false, user_id: userID}).then(function (unread) {
           knex('users').where('id', userID).first().then(function (user){
             knex('patients').where('user_id', userID).then(function (patients){
               knex('surveys').where('user_id', userID).then(function (surveys){
@@ -95,7 +105,9 @@ router.get('/submissions',authorizedUser, function (req, res, next) {
                     patients, patients,
                     surveys:surveys,
                     submissions: submissions,
+                    unread: unread,
                   })
+                })
                 })
                 })
               })

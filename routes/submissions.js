@@ -17,28 +17,32 @@ function authorizedUser(req, res, next) {
 
 router.get('/new', authorizedUser, function (req, res, next) {
   let userID = req.session.user.id;
+  knex.from('submissions').where({read: false, user_id: userID}).then(function (unread) {
   knex('users').where('id', userID).first().then(function (user){
            res.render('patients/new', {
             user: user,
+            unread: unread,
+    })
     })
   })
 })
 
 router.get('/:id', authorizedUser, function (req, res, next) {
   let userID = req.session.user.id;
+  let submissionID = req.params.id;
+  knex.from('submissions').where({read: false, user_id: userID}).then(function (unread) {
   knex('users').where('id', userID).first().then(function (user){
-    knex.from('surveys').innerJoin('submissions', 'surveys.id', 'submissions.user_id').innerJoin('patients','patients.id', 'patients.user_id').where('patients.user_id', userID).first().then(function (submission){
-      knex.from('surveys').innerJoin('submissions', 'surveys.id', 'submissions.user_id').innerJoin('patients','patients.id', 'patients.user_id').where('patients.user_id', userID).then(function (submissions){
+    knex.from('submissions').innerJoin('patients', 'submissions.patient_id', 'patients.id').innerJoin('surveys', 'submissions.survey_id', 'surveys.id').first().where('submissions.id', submissionID).then(function (submission){
            res.render('submissions/single', {
             user: user,
-            submissions: submissions,
             submission: submission,
+            unread: unread,
     })
-    console.log(submissions);
+    console.log(submission);
   })
   })
   })
-})
+  })
 
   router.delete('/:id', function (req, res, next) {
     let submissionID = req.params.id;
