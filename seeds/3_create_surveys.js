@@ -6,6 +6,7 @@ exports.seed = function ( knex, Promise ) {
                 knex( 'surveys' ).insert( {
                     user_id: 1,
                     type: "Office Entry Survey",
+                    status_on: true,
                     title: "welcome to the office",
                     question_1: 'How are you feeling today?',
                     question_2: 'Did you fulfill your last prescription?',
@@ -16,6 +17,7 @@ exports.seed = function ( knex, Promise ) {
                 knex( 'surveys' ).insert( {
                     user_id: 1,
                     type: "Office Exit Survey",
+                    status_on: false,
                     title: "goodbye have a great day",
                     question_1: 'How did your appointment go?',
                     question_2: 'Did you feel comfident with your prognosis?',

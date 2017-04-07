@@ -4,6 +4,7 @@ exports.up = function(knex, Promise) {
       table.integer('user_id').unsigned().index().references('id').inTable('users').onDelete('CASCADE');
       table.string('title').defaultTo("");
       table.string('type').defaultTo("");
+      table.boolean('status_on').defaultTo(true);
       table.string('question_1').defaultTo("");
       table.string('question_2').defaultTo("");
       table.string('question_3').defaultTo("");
