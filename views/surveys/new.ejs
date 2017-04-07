@@ -108,7 +108,7 @@
 	        <div class="content">
 	            <div class="container-fluid">
 	                <div class="row">
-	                    <div class="col-md-9">
+	                    <div class="col-md-12">
 	                        <div class="card">
 	                            <div class="card-header" data-background-color="orange">
 	                                <h4 class="title">New Survey</h4>
@@ -118,14 +118,8 @@
 																<form action="/surveys" method="post">
 
                                   <div class="row">
-                                    <div class="col-md-6">
-                  <div class="form-group label-floating">
-                    <label class="control-label">Title</label>
-                    <input type="text" name="title" class="form-control" required >
-                  </div>
-                                    </div>
-
                                   <div class="input-field col-md-6">
+                                    <label>Survey Type</label>
                                     <select name="type">
                                       <option value="" disabled selected>Choose your type</option>
                                       <option value="Office Entry Survey">Office Entry Survey</option>
@@ -133,12 +127,20 @@
                                       <option value="Pharmacy Entry Survey">Pharmacy Entry Survey</option>
                                       <option value="Pharmacy Exit Survey">Pharmacy Exit Survey</option>
                                     </select>
-                                    <label>Survey Type</label>
                                   </div>
                                 </div>
 
+                                  <div class="row">
+                                    <div class="col-md-6">
+                  <div class="form-group label-floating">
+                    <label class="control-label">Title</label>
+                    <input type="text" name="title" class="form-control" required >
+                  </div>
+                                    </div>
+                                  </div>
+
                                         <div class="row">
-																						<div class="col-md-6">
+																						<div class="col-md-12">
 													<div class="form-group label-floating">
 														<label class="control-label">Question 1</label>
 														<input type="text" name="question_1" class="form-control" required >
@@ -147,7 +149,7 @@
                                           </div>
 
                                           <div class="row">
-														<div class="col-md-6">
+														<div class="col-md-12">
 														<div class="form-group label-floating">
 															<label class="control-label">Question 2</label>
 															<input type="text" name="question_2" class="form-control" required>
@@ -156,7 +158,7 @@
                           </div>
 
 	                                    <div class="row">
-	                                        <div class="col-md-6">
+	                                        <div class="col-md-12">
 												<div class="form-group label-floating">
 													<label class="control-label">Question 3</label>
 													<input type="text" name="question_3" class="form-control" required>
@@ -165,7 +167,7 @@
 	                                    </div>
 
 	                                    <div class="row">
-	                                        <div class="col-md-6">
+	                                        <div class="col-md-12">
 												<div class="form-group label-floating">
 													<label class="control-label">Question 4</label>
 													<input type="text" name="question_4" class="form-control" required>
@@ -174,7 +176,7 @@
                                         </div>
 
                                         <div class="row">
-	                                        <div class="col-md-6">
+	                                        <div class="col-md-12">
 												<div class="form-group label-floating">
 													<label class="control-label">Question 5</label>
 													<input type="text" name="question_5" class="form-control" required>

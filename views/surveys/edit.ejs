@@ -37,7 +37,7 @@
 								<li class="active">
 										<a href="/auth/surveys">
 											<i class="material-icons">library_books</i>
-												<p>Messages</p>
+												<p>Surveys</p>
 										</a>
 								</li>
 								<li>
@@ -118,14 +118,9 @@
 																<form novalidate=""action="/surveys/<%= survey.id %>?_method=PUT" method="post">
 
 																	<div class="row">
-                                    <div class="col-md-6">
-                  <div class="form-group label-floating">
-                    <label class="control-label">Title</label>
-                    <input type="text" name="title" class="form-control" value="<%=survey.title%>" required >
-                  </div>
-                                    </div>
 
                                   <div class="input-field col-md-6">
+																		<label>Survey Type</label>
                                     <select name="type" required>
                                       <option value="<%=survey.type%>" disabled selected><%=survey.type%></option>
                                       <option value="Office Entry Survey">Office Entry Survey</option>
@@ -133,12 +128,19 @@
                                       <option value="Pharmacy Entry Survey">Pharmacy Entry Survey</option>
                                       <option value="Pharmacy Exit Survey">Pharmacy Exit Survey</option>
                                     </select>
-                                    <label>Survey Type</label>
                                   </div>
-                                </div>
+																</div>
 
+																	<div class="row">
+                                    <div class="col-md-6">
+                  <div class="form-group label-floating">
+                    <label class="control-label">Title</label>
+                    <input type="text" name="title" class="form-control" value="<%=survey.title%>" required >
+                  </div>
+                                    </div>
+																	</div>
                                         <div class="row">
-																						<div class="col-md-6">
+																						<div class="col-md-12">
 													<div class="form-group label-floating">
 														<label class="control-label">Question 1</label>
 														<input type="text" name="question_1" class="form-control" value="<%=survey.question_1%>" >
@@ -147,7 +149,7 @@
                                           </div>
 
                                           <div class="row">
-														<div class="col-md-6">
+														<div class="col-md-12">
 														<div class="form-group label-floating">
 															<label class="control-label">Question 2</label>
 															<input type="text" name="question_2" class="form-control" value="<%=survey.question_2%>" >
@@ -156,7 +158,7 @@
                           </div>
 
 	                                    <div class="row">
-	                                        <div class="col-md-6">
+	                                        <div class="col-md-12">
 												<div class="form-group label-floating">
 													<label class="control-label">Question 3</label>
 													<input type="text" name="question_3" class="form-control" value="<%=survey.question_3%>" >
@@ -165,7 +167,7 @@
 	                                    </div>
 
 	                                    <div class="row">
-	                                        <div class="col-md-6">
+	                                        <div class="col-md-12">
 												<div class="form-group label-floating">
 													<label class="control-label">Question 4</label>
 													<input type="text" name="question_4" class="form-control" value="<%=survey.question_4%>" >
@@ -174,7 +176,7 @@
                                         </div>
 
                                         <div class="row">
-	                                        <div class="col-md-6">
+	                                        <div class="col-md-12">
 												<div class="form-group label-floating">
 													<label class="control-label">Question 5</label>
 													<input type="text" name="question_5" class="form-control" value="<%=survey.question_5%>" >
