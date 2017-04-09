@@ -136,14 +136,25 @@
                                                   </form>
                                                 </td>
                                                   <td>
+																										<% if(survey.status_on === true) { %>
                                                     <div class="switch">
                                                     <label>
                                                       Off
-                                                      <input type="checkbox">
+                                                      <input disabled type="checkbox" checked>
                                                       <span class="lever"></span>
-                                                      On
+                                                      Active
                                                     </label>
                                                   </div>
+																									<% }else{ %>
+																										<div class="switch">
+																										<label>
+																											Off
+																											<input disabled type="checkbox">
+																											<span class="lever"></span>
+																											Active
+																										</label>
+																									</div>
+																										<% } %>
                                                 </td>
                                                 <% }) %>
                                               </tr>

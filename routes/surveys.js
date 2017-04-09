@@ -72,7 +72,7 @@ router.post('/', authorizedUser, function(req, res, next) {
     user_id: userID,
     title: req.body.title,
     type: req.body.type,
-    status: false,
+    status_on: req.body.status_on,
     question_1: req.body.question_1,
     question_2: req.body.question_2,
     question_3: req.body.question_3,
@@ -88,7 +88,7 @@ router.put('/:id' ,function (req, res, next) {
   knex('surveys').where('id', surveyID).update({
     title: req.body.title,
     type: req.body.type,
-    status: false,
+    status_on: req.body.status_on,
     question_1: req.body.question_1,
     question_2: req.body.question_2,
     question_3: req.body.question_3,
