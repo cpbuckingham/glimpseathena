@@ -115,18 +115,18 @@
 									<p class="category">Send an introduction email to a Patient</p>
 	                            </div>
 	                            <div class="card-content">
-																<form action="/email" method="post">
+																<form action="/email/<%=patient.id%>" method="post">
 																					<div class="row">
 																						<div class="col-md-6">
 													<div class="form-group label-floating">
 														<label class="control-label">Full Name</label>
-														<input type="text" name="full_name" class="form-control" >
+														<input type="text" name="full_name" class="form-control" value="<%= patient.full_name%>">
 													</div>
 																						</div>
 																							<div class="col-md-6">
 														<div class="form-group label-floating">
 															<label class="control-label">Email</label>
-															<input type="text" name="email" class="form-control" >
+															<input type="text" name="email" class="form-control" value="<%= patient.email%>" >
 														</div>
 																							</div>
 																					</div>
@@ -135,7 +135,17 @@
 	                                        <div class="col-md-12">
 												<div class="form-group label-floating">
 													<label class="control-label">Message</label>
-													<input type="text" name="message" class="form-control" >
+                          <textarea class="form-control" name="message" rows="5" required>
+Hello <%=patient.full_name%>,
+
+Welcome to Glimpse. An app that connects me(your doctor) to you. I already set you up in our system. Please submit your information with your email and password whenever notifications are sent.
+
+Username: your email
+Password: password123
+
+Thank you,
+Doctor <%= user.first_name%> <%= user.last_name%>
+                            </textarea>
 												</div>
 	                                        </div>
 	                                    </div>

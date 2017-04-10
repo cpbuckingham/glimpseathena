@@ -16,40 +16,45 @@ function authorizedUser(req, res, next) {
 }
 
 
-router.get('/new',authorizedUser, function (req, res, next) {
+router.get('/:id',authorizedUser, function (req, res, next) {
   let userID = req.session.user.id;
+  let patientID = req.params.id;
   knex.from('submissions').where({read: false, user_id: userID}).then(function (unread) {
   knex('users').where('id', userID).first().then(function (user){
     knex('patients').where('user_id', userID).then(function (patients){
+      knex('patients').where('id', patientID).first().then(function (patient){
       knex.from('surveys').innerJoin('submissions', 'surveys.id', 'submissions.user_id').innerJoin('patients','patients.id', 'patients.user_id').where('patients.user_id', userID).then(function (submissions){
            res.render('email/new', {
             user: user,
             patients, patients,
             submissions: submissions,
             unread: unread,
+            patient: patient,
           })
+          console.log(patient);
         })
+      })
       })
       })
     })
     })
 
-router.post('/', function (req, res) {
+router.post('/:id', function (req, res) {
   var mailOpts, smtpTrans;
   smtpTrans = nodemailer.createTransport({
       service: 'Gmail',
       auth: {
-          user: "cameron.p.buckingham@gmail.com",
+          user: "glimpseathena@gmail.com",
           pass: process.env.GMAIL_PASS
       }
   });
   //Mail options
   mailOpts = {
-      from: req.body.full_name + ' &lt;' + req.body.email + '&gt;', //grab form data from the request body object
-      to: 'cameron.p.buckingham@gmail.com',
-      subject: 'Website contact form',
+      from: req.body.user, //grab form data from the request body object
+      to: req.body.email,
+      subject: 'Welcome to Glimpse',
       text: req.body.message
-  };
+      };
   smtpTrans.sendMail(mailOpts, function (error, response) {
       //Email not sent
       if (error) {
