@@ -118,16 +118,16 @@
       																	<table class="table table-hover">
       																			<thead>
       																				<th>Patient</th>
-      																				<th>Type</th>
                                               <th>Time Completed</th>
+																							<th>Marked as Read</th>
                                               <th>Actions</th>
       																			</thead>
                                             <% submissions.forEach(function (submission) { %>
       																			<tbody>
                                               <tr>
                                                 <td><%=submission.full_name%></td>
-                                                <td><%=submission.type%></td>
                                                 <td><%=submission.updated_at%></td>
+																								<td><%=submission.read%></td>
                                                 <td class="td-actions text-right">
                                                   <form style="padding-right:10px;" action="/submissions/<%=submission.id%>"method="GET">
                                                     <input type="submit" id="markread" class="btn btn-success" value="View">

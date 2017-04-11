@@ -78,7 +78,12 @@ router.get('/submissions',authorizedUser, function (req, res, next) {
   knex.from('submissions').where({read: false, user_id: userID}).then(function (unread) {
   knex('users').where('id', userID).first().then(function (user){
     knex('surveys').where('user_id', userID).then(function (surveys){
-      knex.from('submissions').innerJoin('patients', 'submissions.patient_id', 'patients.id').innerJoin('surveys', 'submissions.survey_id', 'surveys.id').where('submissions.user_id', userID).then(function (submissions){
+
+      knex.from('patients')
+      .innerJoin('submissions', 'patients.id', 'submissions.patient_id')
+      .where('submissions.user_id', userID).then(function (submissions){
+
+
   res.render('dashboard/submissions', {
     user: user,
     surveys:surveys,

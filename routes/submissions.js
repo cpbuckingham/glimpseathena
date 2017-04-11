@@ -32,13 +32,16 @@ router.get('/:id', authorizedUser, function (req, res, next) {
   let submissionID = req.params.id;
   knex.from('submissions').where({read: false, user_id: userID}).then(function (unread) {
   knex('users').where('id', userID).first().then(function (user){
-    knex.from('submissions').innerJoin('patients', 'submissions.patient_id', 'patients.id').innerJoin('surveys', 'submissions.survey_id', 'surveys.id').first().where('submissions.id', submissionID).then(function (submission){
+    knex.from('patients').innerJoin('submissions', 'patients.id', 'submissions.patient_id').first().where('submissions.id', submissionID).then(function (patient){
+    knex.from('surveys').innerJoin('submissions', 'surveys.id', 'submissions.survey_id').first().where('submissions.id', submissionID).then(function (submission){
            res.render('submissions/single', {
             user: user,
             submission: submission,
             unread: unread,
+            patient: patient,
     })
     console.log(submission);
+  })
   })
   })
   })
@@ -50,6 +53,8 @@ router.get('/:id', authorizedUser, function (req, res, next) {
       res.redirect('/auth/submissions')
     })
   })
+
+
 
   router.put('/:id', function(req, res, next) {
   let submissionID = req.params.id;

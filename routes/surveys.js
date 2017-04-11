@@ -58,6 +58,18 @@ router.get('/:id', authorizedUser, function (req, res, next) {
   })
 })
 
+router.get('/:id/submission', function (req, res, next) {
+  let surveyID = req.params.id;
+  knex('users').then(function (user){
+  knex('surveys').where('id', surveyID).first().then(function (survey){
+           res.render('surveys/single', {
+            survey: survey
+  })
+  console.log(user);
+})
+})
+})
+
 router.delete('/:id', function (req, res, next) {
   let surveyID = req.params.id;
   knex('surveys').where('id', surveyID).del().then(function (deleted) {
@@ -97,6 +109,22 @@ router.put('/:id' ,function (req, res, next) {
   }).then(function (){
     res.redirect('/auth/surveys')
   } )
+})
+
+router.post('/:id', function(req, res, next) {
+  let surveyID = req.params.id;
+  knex('submissions').insert({
+    user_id: knex('users').where('last_name', req.body.last_name).select('id'),
+    patient_id: knex('patients').where('email', req.body.email).select('id'),
+    survey_id: surveyID,
+    answer_1: req.body.answer_1,
+    answer_2: req.body.answer_2,
+    answer_3: req.body.answer_3,
+    answer_4: req.body.answer_4,
+    answer_5: req.body.answer_5,
+  }).then(function (){
+    res.render('partials/thank_you')
+  })
 })
 
 
