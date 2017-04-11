@@ -24,7 +24,7 @@ exports.seed = function ( knex, Promise ) {
                     email: 'lindszg@gmail.com',
                     admin: true,
                     first_name: 'Lindsey',
-                    last_name: 'Buckingham',
+                    last_name: 'Jammer',
                     hashed_password: '$2a$12$2fPhX9qJCLlVi0uXxttKPOhdHlC1x0THSLz5A1sjxVoZ5l6/C01ZK',
                     avatar: 'https://octodex.github.com/images/mcefeeline.jpg',
                     role: "Flight Attendant",
