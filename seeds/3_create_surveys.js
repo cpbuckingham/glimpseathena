@@ -9,10 +9,10 @@ exports.seed = function ( knex, Promise ) {
                     type: "Office Entry Survey",
                     status_on: true,
                     title: "welcome to the office",
-                    question_1: 'How are you feeling today?',
-                    question_2: 'Did you fulfill your last prescription?',
-                    question_3: 'Have you been following the instructions for your prescription?',
-                    question_4: 'Have you felt any discomfort from using your prescription?',
+                    question_1: 'What brings you to the office?',
+                    question_2: 'Are you in any pain (scale of 0-10)?',
+                    question_3: 'Are there any recent changes in your medical history',
+                    question_4: 'What medications are you taking?',
                     question_5: 'Where did you get your prescription?',
                 } ),
                 knex( 'surveys' ).insert( {
@@ -21,11 +21,11 @@ exports.seed = function ( knex, Promise ) {
                     type: "Office Exit Survey",
                     status_on: true,
                     title: "Hope the office visit went well",
-                    question_1: 'How did your appointment go?',
-                    question_2: 'Did you feel comfident with your prognosis?',
-                    question_3: 'Did you get another prescription?',
-                    question_4: 'How old are you?',
-                    question_5: 'Do you feel supported?',
+                    question_1: 'Are you satisfied with your appointment?',
+                    question_2: 'What made your experience enjoyable today, not enjoyable?',
+                    question_3: 'What could have enhanced your experience today?',
+                    question_4: 'Will you return to this practice',
+                    question_5: 'Will you refer others to this practice',
                 } ),
                 knex( 'surveys' ).insert( {
                     id: 3,
@@ -33,11 +33,11 @@ exports.seed = function ( knex, Promise ) {
                     type: "Pharmacy Entry Survey",
                     status_on: true,
                     title: "welcome to the pharmacy",
-                    question_1: 'Are you picking up your prescriptions now?',
-                    question_2: 'Is this the first pharmacy you have visited to pick up?',
+                    question_1: 'Is your visit related to your recent visit with Doctor Lyman?',
+                    question_2: 'Will you be filling a prescription with a pharmacist today?',
                     question_3: 'Is this your local pharmacy?',
-                    question_4: 'Do you always come here?',
-                    question_5: 'Are you picking up any groceries too?',
+                    question_4: 'Do you always come here, is it your local pharmacy?',
+                    question_5: 'Are you picking up any other products too, if so, what kind?',
                 } ),
                 knex( 'surveys' ).insert( {
                     id: 4,
@@ -45,12 +45,14 @@ exports.seed = function ( knex, Promise ) {
                     type: "Pharmacy Exit Survey",
                     status_on: true,
                     title: "Hope the pharmacy visit went well",
-                    question_1: 'Did you get the drugs?',
-                    question_2: 'What color are they?',
-                    question_3: 'Are they shinny?',
-                    question_4: 'Did you take the pills already?',
-                    question_5: 'Did you take the green pill or the red pill?',
+                    question_1: 'Did you purchase your prescription?',
+                    question_2: 'Did you choose brand or generic?',
+                    question_3: 'What was your mode of payment, cash or insurance?',
+                    question_4: 'Will you prescription require a refill?',
+                    question_5: 'Will you return to this pharmacy or a similar branch for your refill?',
                 } )
             ] );
         } );
       };
+
+    
