@@ -11,7 +11,7 @@ exports.seed = function ( knex, Promise ) {
                     last_name: 'Buckingham',
                     hashed_password: '$2a$12$2fPhX9qJCLlVi0uXxttKPOhdHlC1x0THSLz5A1sjxVoZ5l6/C01ZK',
                     avatar: 'https://octodex.github.com/images/homercat.png',
-                    role: "Engineer",
+                    role: "Doctor",
                     company_name: "Microsoft",
                     address: "281 Middle Crk",
                     city: "Buda",

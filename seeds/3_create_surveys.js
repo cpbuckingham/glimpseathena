@@ -33,7 +33,7 @@ exports.seed = function ( knex, Promise ) {
                     type: "Pharmacy Entry Survey",
                     status_on: true,
                     title: "welcome to the pharmacy",
-                    question_1: 'Is your visit related to your recent visit with Doctor Lyman?',
+                    question_1: 'Is your visit related to your recent visit with Doctor Buckingham?',
                     question_2: 'Will you be filling a prescription with a pharmacist today?',
                     question_3: 'Is this your local pharmacy?',
                     question_4: 'Do you always come here, is it your local pharmacy?',
@@ -48,11 +48,9 @@ exports.seed = function ( knex, Promise ) {
                     question_1: 'Did you purchase your prescription?',
                     question_2: 'Did you choose brand or generic?',
                     question_3: 'What was your mode of payment, cash or insurance?',
-                    question_4: 'Will you prescription require a refill?',
+                    question_4: 'Does you prescription require a refill?',
                     question_5: 'Will you return to this pharmacy or a similar branch for your refill?',
                 } )
             ] );
         } );
       };
-
-    
