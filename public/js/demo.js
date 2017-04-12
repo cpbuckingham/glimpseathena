@@ -36,9 +36,9 @@ demo = {
         /* ----------==========     Daily Sales Chart initialization For Documentation    ==========---------- */
 
         dataDailySalesChart = {
-            labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
+          labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
             series: [
-                [12, 17, 7, 17, 23, 18, 38]
+                [3, 10, 12, 7, 0, 0, 0]
             ]
         };
 
@@ -61,9 +61,9 @@ demo = {
         /* ----------==========     Daily Sales Chart initialization    ==========---------- */
 
         dataDailySalesChart = {
-            labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
+          labels: ['Jan', 'Feb', 'Mar', 'Apr'],
             series: [
-                [12, 17, 7, 17, 23, 18, 38]
+                [5, 12, 20, 42 ]
             ]
         };
 
@@ -72,7 +72,7 @@ demo = {
                 tension: 0
             }),
             low: 0,
-            high: 50, // creative tim: we recommend you to set the high sa the biggest value + something for a better look
+            high: 70, // creative tim: we recommend you to set the high sa the biggest value + something for a better look
             chartPadding: { top: 0, right: 0, bottom: 0, left: 0},
         }
 
@@ -81,13 +81,12 @@ demo = {
         md.startAnimationForLineChart(dailySalesChart);
 
 
-
         /* ----------==========     Completed Tasks Chart initialization    ==========---------- */
 
         dataCompletedTasksChart = {
-            labels: ['12am', '3pm', '6pm', '9pm', '12pm', '3am', '6am', '9am'],
+          labels: ['Jan', 'Feb', 'Mar', 'Apr'],
             series: [
-                [230, 750, 450, 300, 280, 240, 200, 190]
+                [2, 2, 3, 8,]
             ]
         };
 
@@ -96,7 +95,7 @@ demo = {
                 tension: 0
             }),
             low: 0,
-            high: 1000, // creative tim: we recommend you to set the high sa the biggest value + something for a better look
+            high: 20, // creative tim: we recommend you to set the high sa the biggest value + something for a better look
             chartPadding: { top: 0, right: 0, bottom: 0, left: 0}
         }
 
@@ -110,9 +109,9 @@ demo = {
         /* ----------==========     Emails Subscription Chart initialization    ==========---------- */
 
         var dataEmailsSubscriptionChart = {
-          labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+          labels: ['CVS', 'Walgreens', 'Rite Aid', "Walmart"],
           series: [
-            [542, 443, 320, 780, 553, 453, 326, 434, 568, 610, 756, 895]
+          [16, 7, 5, 7]
 
           ]
         };
@@ -121,7 +120,7 @@ demo = {
                 showGrid: false
             },
             low: 0,
-            high: 1000,
+            high: 25,
             chartPadding: { top: 0, right: 5, bottom: 0, left: 0}
         };
         var responsiveOptions = [
@@ -138,6 +137,38 @@ demo = {
 
         //start animation for the Emails Subscription Chart
         md.startAnimationForBarChart(emailsSubscriptionChart);
+
+        /* ----------==========     City Subscription Chart initialization    ==========---------- */
+
+        var dataCitySubscriptionChart = {
+          labels: ['Buda', 'San Marcos', 'Kyle', "Austin"],
+          series: [
+          [8, 3, 5, 19]
+
+          ]
+        };
+        var optionsCitySubscriptionChart = {
+            axisX: {
+                showGrid: false
+            },
+            low: 0,
+            high: 25,
+            chartPadding: { top: 0, right: 5, bottom: 0, left: 0}
+        };
+        var responsiveOptions = [
+          ['screen and (max-width: 640px)', {
+            seriesBarDistance: 5,
+            axisX: {
+              labelInterpolationFnc: function (value) {
+                return value[0];
+              }
+            }
+          }]
+        ];
+        var citySubscriptionChart = Chartist.Bar('#citySubscriptionChart', dataCitySubscriptionChart, optionsCitySubscriptionChart, responsiveOptions);
+
+        //start animation for the Emails Subscription Chart
+        md.startAnimationForBarChart(citySubscriptionChart);
 
     },
 
