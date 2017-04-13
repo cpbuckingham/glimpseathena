@@ -34,6 +34,7 @@ router.get('/dashboard',  function (req, res) {
             submissions: submissions,
             unread: unread,
           })
+          console.log(unread);
         })
         })
       })

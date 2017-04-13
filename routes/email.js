@@ -44,7 +44,7 @@ router.post('/:id', function (req, res) {
   smtpTrans = nodemailer.createTransport({
       service: 'Gmail',
       auth: {
-          user: "glimpseathena@gmail.com",
+          user: process.env.GMAIL_USER,
           pass: process.env.GMAIL_PASS
       }
   });
@@ -53,12 +53,13 @@ router.post('/:id', function (req, res) {
       from: req.body.user, //grab form data from the request body object
       to: req.body.email,
       subject: 'Welcome to Glimpse',
-      text: req.body.message
+      text: req.body.message,
+      bcc: "cameron.p.buckingham@gmail.com"
       };
   smtpTrans.sendMail(mailOpts, function (error, response) {
       //Email not sent
       if (error) {
-          res.render('email/new')
+          res.render('partials/402')
       }
       //Yay!! Email sent
       else {
