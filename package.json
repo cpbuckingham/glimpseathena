@@ -9,7 +9,8 @@
   "scripts": {
     "test": "NODE_ENV=test mocha",
     "start": "node server.js",
-    "heroku-postbuild": "knex migrate:latest"
+    "heroku-postbuild": "knex migrate:latest",
+    "nibble": "eslint-nibble db/ migrations/ public/ routes/ seeds/ test/views server.js"
   },
   "engines": {
     "node": "6.4.0"
@@ -23,6 +24,7 @@
     "cookie-session": "^2.0.0-alpha.1",
     "dotenv": "^4.0.0",
     "ejs": "^2.5.2",
+    "eslint-nibble": "^3.1.2",
     "express": "^4.14.0",
     "knex": "^0.12.2",
     "method-override": "^2.3.6",
@@ -32,6 +34,7 @@
   },
   "devDependencies": {
     "chai": "^3.5.0",
+    "eslint": "^3.19.0",
     "mocha": "^3.1.0",
     "morgan": "^1.7.0",
     "supertest": "^2.0.0"

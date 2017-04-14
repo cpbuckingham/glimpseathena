@@ -80,36 +80,35 @@ describe('Register Page', function () {
 //    })
 //  })
 //
-// //tests for auth page
-// describe('Auth Page', function () {
-//  it('should display a single users profile information', function (done) {
-//    request.get('/auth')
-//           .expect(200)
-//           .end(function(err, res) {
-//             if(err){
-//               done(err)
-//             }
-//             knex('users').where('id', 1).first().then(function(data) {
-//               expect(res.text).to.contain(data.username)
-//               done();
-//     })
-//   })
-//  })
-//
-//  it('should display a single users posts', function (done) {
-//    request.get('/auth')
-//           .expect(200)
-//           .end(function(err, res) {
-//             if(err){
-//               done(err)
-//             }
-//             knex('posts').where('user_id', 1).first().then(function(data) {
-//               expect(res.text).to.contain(data.body)
-//               done();
-//       })
-//     })
-//   })
-// })
+//tests for auth page
+describe('Dashboard Page', function () {
+ it('should display a single users information', function (done) {
+   request.get('/auth/dashboard')
+          .end(function(err, res) {
+            if(err){
+              done(err)
+            }
+            knex('users').where('id', 1).first().then(function(data) {
+              expect(res.text).to.contain(data.username)
+              done();
+    })
+  })
+ })
+})
+describe('Submission Page', function () {
+ it('should display a submission name', function (done) {
+   request.get('/auth/submissions')
+          .end(function(err, res) {
+            if(err){
+              done(err)
+            }
+            knex('submissions').where('id', 1).first().then(function(data) {
+              expect(res.text).to.contain(data.full_name)
+              done();
+      })
+    })
+  })
+})
 //
 //
 //
