@@ -1,46 +1,59 @@
-// 'use strict'
-//
-// const expect = require( 'chai' ).expect;
-// const app = require( '../server' );
-// const request = require( 'supertest' )( app );
-// const morgan = require( 'morgan' );
-// const knex = require('../db/knex');
-//
-// //tests to tests
-// describe('Test the test', function () {
-//  it('should pass the test', function () {
-//     expect(true).to.equal(true)
-//  })
-// })
-//
-// //tests for landing page
-// describe('Landing Page', function () {
-//  it('should display the landing page', function (done) {
-//    request.get('/')
-//           .expect(200)
-//           .end(function (err, res) {
-//             if(err){
-//               done(err);
-//             }
-//             expect(res.text).to.contain("Featured Blog Post")
-//             done();
-//   })
-//  })
-// })
-//
-// //tests for featured pages
-// describe('Featured Pages', function () {
-//  it('should display feature 1', function (done) {
-//    request.get('/featured/one')
-//           .expect(200)
-//           .end(function(err, res) {
-//             if(err){
-//               done(err)
-//             }
-//             expect(res.text).to.contain("Workout Goals for 2017")
-//             done();
-//   })
-//  })
+'use strict'
+
+const expect = require( 'chai' ).expect;
+const app = require( '../server' );
+const request = require( 'supertest' )( app );
+const morgan = require( 'morgan' );
+const knex = require('../db/knex');
+
+//tests to tests
+describe('Test the test', function () {
+ it('should pass the test', function () {
+    expect(true).to.equal(true)
+ })
+})
+
+describe('Landing Page', function () {
+ it('should display the landing page', function (done) {
+   request.get('/')
+          .expect(200)
+          .end(function (err, res) {
+            if(err){
+              done(err);
+            }
+            expect(res.text).to.contain("Glimpse")
+            done();
+  })
+ })
+})
+
+describe('Login Page', function () {
+ it('should display login page', function (done) {
+   request.get('/auth/login')
+          .expect(200)
+          .end(function(err, res) {
+            if(err){
+              done(err)
+            }
+            expect(res.text).to.contain("Login")
+            done();
+    })
+  })
+})
+describe('Register Page', function () {
+ it('should display register page', function (done) {
+   request.get('/auth/signup')
+          .expect(200)
+          .end(function(err, res) {
+            if(err){
+              done(err)
+            }
+            expect(res.text).to.contain("Register")
+            done();
+  })
+ })
+})
+
 //
 //   it('should display feature 2', function (done) {
 //     request.get('/featured/two')
