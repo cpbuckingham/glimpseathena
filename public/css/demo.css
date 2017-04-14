@@ -32,8 +32,6 @@
 .sidebar .nav > li.active-pro{
     position: absolute;
     width: 100%;
-    padding-top: 20px;
-    bottom: 10px;
 }
 
 .tim-row{
