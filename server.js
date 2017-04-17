@@ -2,7 +2,6 @@
 /*eslint no-console: 0*/
 /*eslint no-undef: 0*/
 
-
 require("dotenv").config();
 
 const express = require("express");
@@ -19,7 +18,6 @@ const surveys = require("./routes/surveys");
 const submissions = require("./routes/submissions");
 const email = require("./routes/email");
 
-
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(methodOverride("_method"));
@@ -35,7 +33,6 @@ app.use("/patients", patients);
 app.use("/surveys", surveys);
 app.use("/submissions", submissions);
 app.use("/email", email);
-
 
 app.listen(port, function () {
     console.log("hello from", port);
