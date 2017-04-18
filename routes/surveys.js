@@ -49,7 +49,7 @@ router.get("/:id", authorizedUser, function (req, res, next) {
     });
 });
 
-router.get("/:id/submission", authorizedUser, function (req, res, next) {
+router.get("/:id/submission", function (req, res, next) {
     let surveyID = req.params.id;
     knex("surveys").where("id", surveyID).first().then(function (survey){
         res.render("surveys/single", {
@@ -99,7 +99,7 @@ router.put("/:id", authorizedUser, function (req, res, next) {
     });
 });
 
-router.post("/:id", authorizedUser, function(req, res, next) {
+router.post("/:id", function(req, res, next) {
     let surveyID = req.params.id;
     knex("submissions").insert({
         user_id: knex("users").where("last_name", req.body.last_name).select("id"),
