@@ -6,6 +6,7 @@ const router = express.Router();
 const knex = require("../db/knex");
 const bcrypt = require("bcrypt");
 const createAvatar = require("../public/js/octodex_avatar");
+const flash = require("express-flash");
 
 function authorizedUser(req, res, next) {
     let userID = req.session.user.id;
@@ -109,7 +110,12 @@ router.get("/signup", function (req, res, next) {
 });
 
 router.get("/login", function (req, res, next) {
-    res.render("auth/login");
+    if (res.cookie("loggedin", true)){
+        req.flash("info", "Thanks for Signing up, now Login");
+        res.render("auth/login");
+    } else {
+        res.render("auth/login");
+    }
 });
 
 router.post("/signup", function (req, res, next) {
@@ -125,6 +131,7 @@ router.post("/signup", function (req, res, next) {
                     avatar: created_avatar,
                     username: req.body.username,
                 }).then(function (){
+                    res.cookie("loggedin", true);
                     res.redirect("/auth/login");
                 });
             });

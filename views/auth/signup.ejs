@@ -36,7 +36,11 @@
   </style>
 </head>
 <body>
-  <div class="section"></div>
+  <div class="section">
+    <% if (messages.info){ %>
+      <%=message.info%>
+    <% } %>
+  </div>
   <main>
     <center>
       <h3 class="purple-text darken-3">Glimpse</h3>

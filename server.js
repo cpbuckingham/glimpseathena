@@ -10,6 +10,7 @@ const port = process.env.PORT || 3000;
 const bodyParser = require("body-parser");
 const cookieSession = require("cookie-session");
 const methodOverride = require("method-override");
+const flash = require("express-flash");
 
 const users = require("./routes/users");
 const auth = require("./routes/auth");
@@ -24,8 +25,13 @@ app.use(methodOverride("_method"));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cookieSession({
-    secret: "glimpseathena",
+    secret: process.env.COOKIE_SECRET,
 }));
+app.use(flash());
+app.use(function(req, res, next){
+  res.locals.messages = req.flash();
+  next();
+});
 
 app.use("/users", users);
 app.use("/auth", auth);
