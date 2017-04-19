@@ -21,6 +21,7 @@
     "bcrypt": "^0.8.7",
     "body-parser": "^1.15.2",
     "cheerio": "^0.22.0",
+    "cookie-parser": "^1.4.3",
     "cookie-session": "^2.0.0-alpha.1",
     "dotenv": "^4.0.0",
     "ejs": "^2.5.2",

@@ -1,5 +1,5 @@
 "use strict";
-/*eslint no-unused-lets: 0*/
+/*eslint no-unused-vars: 0*/
 
 const express = require("express");
 const router = express.Router();
@@ -112,13 +112,13 @@ router.get("/signup", function (req, res, next) {
 });
 
 router.get("/login", function (req, res, next) {
-    if (res.cookie("signedin", true)){
-        req.flash("info", "Thanks for Signing up, now Login");
-        res.render("auth/login")
-      } else {
-        res.render("auth/login")
-      };
-    });
+    if (req.cookies.registered){
+        req.flash("info", "Thanks for registering, login please");
+        res.render("auth/login");
+    } else {
+        res.render("auth/login");
+    }
+});
 
 router.post("/signup", function (req, res, next) {
     knex("users").where({
@@ -135,7 +135,7 @@ router.post("/signup", function (req, res, next) {
                         avatar: created_avatar,
                         username: req.body.username,
                     }).then(function (){
-                        res.cookie("signedin", true);
+                        res.cookie("registered", true);
                         res.redirect("/auth/login");
                     });
                 });
@@ -158,6 +158,7 @@ router.post("/login", function (req, res, next) {
             bcrypt.compare(req.body.password, user.hashed_password, function(err, result) {
                 if(result){
                     req.session.user = user;
+                    res.clearCookie("registered");
                     res.cookie("loggedin", true);
                     res.redirect("/auth/dashboard");
                 } else {
@@ -175,7 +176,7 @@ router.get("/logout", function (req, res) {
 });
 
 function checkAuth(req){
-  let info = {};
+    let info = {};
     info.hasError = false;
     info.error = {};
     checkRequired(info, req);
@@ -184,18 +185,18 @@ function checkAuth(req){
 }
 
 function checkEmail(info, req){
-  let str = req.body.email;
-  let atFound = false;
-  let dotFound = false;
+    let str = req.body.email;
+    let atFound = false;
+    let dotFound = false;
 
-  for(let i=1; i < str.length; i++){
-      if(str[i] === "@" || atFound){
-          if(atFound && str[i] === "."){
-              dotFound = true;
-          }
-          atFound = true;
-      }
-  }
+    for(let i=1; i < str.length; i++){
+        if(str[i] === "@" || atFound){
+            if(atFound && str[i] === "."){
+                dotFound = true;
+            }
+            atFound = true;
+        }
+    }
     if(atFound && dotFound){
         info.email = req.body.email;
     }
@@ -209,18 +210,16 @@ function checkEmail(info, req){
 }
 
 function checkRequired(info, req){
-  for(var item in req.body){
-    info[item] = req.body[item];
-    if(req.body[item].length <= 0)
-    {
-      if(!info.error[item])
-      {
-        info.error[item] = [];
-      }
-      info.hasError = true;
-      info.error[item].push({message: item + " is required."});
+    for(var item in req.body){
+        info[item] = req.body[item];
+        if(req.body[item].length <= 0){
+            if(!info.error[item]){
+                info.error[item] = [];
+            }
+            info.hasError = true;
+            info.error[item].push({message: item + " is required."});
+        }
     }
-  }
 }
 
 module.exports = router;
