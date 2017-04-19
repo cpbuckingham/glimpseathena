@@ -179,8 +179,8 @@ function checkAuth(req){
     let info = {};
     info.hasError = false;
     info.error = {};
-    checkRequired(info, req);
     checkEmail(info, req);
+    checkRequired(info, req);
     return info;
 }
 
