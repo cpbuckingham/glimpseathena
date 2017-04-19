@@ -34,13 +34,16 @@
       border-bottom: 2px solid green;
       box-shadow: none;
     }
+    .messages{
+      color: red;
+    }
   </style>
 </head>
 <body>
   <div class="section"></div>
   <main>
     <center>
-      <h3 class="purple-text darken-3">Glimpse</h3>
+      <h3 class="purple-text darken-3">Login</h3>
       <div class="section">
         <% if ( messages ) { %>
             <div class="messages"><%= messages.info %></div>
@@ -61,7 +64,7 @@
             </div>
             <div class='row'>
               <div class='input-field col s12'>
-                <input class='validate' type='password' name='hashed_password' id='password' required/>
+                <input class='validate' type='password' name='password' id='password' required/>
                 <label for='password'>Enter your password</label>
               </div>
               <label style='float: right;'>

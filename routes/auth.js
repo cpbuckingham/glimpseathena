@@ -1,12 +1,11 @@
 "use strict";
-/*eslint no-unused-vars: 0*/
+/*eslint no-unused-lets: 0*/
 
 const express = require("express");
 const router = express.Router();
 const knex = require("../db/knex");
 const bcrypt = require("bcrypt");
 const createAvatar = require("../public/js/octodex_avatar");
-const flash = require("express-flash");
 
 function authorizedUser(req, res, next) {
     let userID = req.session.user.id;
@@ -106,37 +105,45 @@ router.get("/surveys",authorizedUser, function (req, res, next) {
 });
 
 router.get("/signup", function (req, res, next) {
-    res.render("auth/signup");
+    res.render("auth/signup", {
+        hasError : false,
+        email: "",
+    });
 });
 
 router.get("/login", function (req, res, next) {
-    if (res.cookie("loggedin", true)){
+    if (res.cookie("signedin", true)){
         req.flash("info", "Thanks for Signing up, now Login");
-        res.render("auth/login");
-    } else {
-        res.render("auth/login");
-    }
-});
+        res.render("auth/login")
+      } else {
+        res.render("auth/login")
+      };
+    });
 
 router.post("/signup", function (req, res, next) {
     knex("users").where({
         email: req.body.email
     }).first().then(function(user){
         if(!user){
-            let hash = bcrypt.hashSync(req.body.hashed_password, 12);
-            createAvatar.generateAvatar(function(created_avatar){
-                return knex("users").insert({
-                    email: req.body.email,
-                    hashed_password: hash,
-                    avatar: created_avatar,
-                    username: req.body.username,
-                }).then(function (){
-                    res.cookie("loggedin", true);
-                    res.redirect("/auth/login");
+            let ssv = checkAuth(req);
+            if(!ssv.hasError){
+                let hash = bcrypt.hashSync(req.body.password, 12);
+                createAvatar.generateAvatar(function(created_avatar){
+                    return knex("users").insert({
+                        email: req.body.email,
+                        hashed_password: hash,
+                        avatar: created_avatar,
+                        username: req.body.username,
+                    }).then(function (){
+                        res.cookie("signedin", true);
+                        res.redirect("/auth/login");
+                    });
                 });
-            });
+            } else {
+                res.render("auth/signup", ssv);
+            }
         } else {
-            res.redirect("/auth/signup");
+            res.render("partials/405");
         }
     });
 });
@@ -148,7 +155,7 @@ router.post("/login", function (req, res, next) {
         if(!user){
             res.render("partials/404");
         } else {
-            bcrypt.compare(req.body.hashed_password, user.hashed_password, function(err, result) {
+            bcrypt.compare(req.body.password, user.hashed_password, function(err, result) {
                 if(result){
                     req.session.user = user;
                     res.cookie("loggedin", true);
@@ -166,5 +173,54 @@ router.get("/logout", function (req, res) {
     res.clearCookie("loggedin");
     res.redirect("/");
 });
+
+function checkAuth(req){
+  let info = {};
+    info.hasError = false;
+    info.error = {};
+    checkRequired(info, req);
+    checkEmail(info, req);
+    return info;
+}
+
+function checkEmail(info, req){
+  let str = req.body.email;
+  let atFound = false;
+  let dotFound = false;
+
+  for(let i=1; i < str.length; i++){
+      if(str[i] === "@" || atFound){
+          if(atFound && str[i] === "."){
+              dotFound = true;
+          }
+          atFound = true;
+      }
+  }
+    if(atFound && dotFound){
+        info.email = req.body.email;
+    }
+    else {
+        if(!info.error.email){
+            info.error.email = [];
+        }
+        info.hasError = true;
+        info.error.email.push({message : "email is malformed."});
+    }
+}
+
+function checkRequired(info, req){
+  for(var item in req.body){
+    info[item] = req.body[item];
+    if(req.body[item].length <= 0)
+    {
+      if(!info.error[item])
+      {
+        info.error[item] = [];
+      }
+      info.hasError = true;
+      info.error[item].push({message: item + " is required."});
+    }
+  }
+}
 
 module.exports = router;
