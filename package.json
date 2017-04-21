@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "using geofencing to gather survey data for doctors",
   "main": "server.js",
+  "repository": "https://github.com/cpbuckingham/glimpseathena",
   "directories": {
     "test": "test"
   },
