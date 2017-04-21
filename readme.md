@@ -24,8 +24,10 @@ Tested & Linted & Open-source
 * nodemon > ... have fun
 
 
-Info deck here
+Info deck [here](https://docs.google.com/presentation/d/1wbUCgw1QY0RG1H8jSBEXTdpa6RUtfLQKaKI_TIVh4Hk/edit?usp=sharing)
 
-Live example here
+Live example [here](http://www.glimpse.live)
 
-Hackathon info here
+Hackathon info [here](http://athenahackathon.com)
+
+Trello board [here](https://trello.com/b/mb2xfBCB/glimpseathena)
