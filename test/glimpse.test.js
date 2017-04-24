@@ -114,4 +114,34 @@ describe("Submission Page", function () {
     });
 });
 
+describe("Employee Add/Edit Page", function () {
+    it("should display the add/update pages for employees", function (done) {
+        request.get("/employees/new")
+          .end(function(err, res) {
+              if(err){
+                  done(err);
+              }
+              knex("employees").where("id", 1).first().then(function(data) {
+                  expect(res.text).to.contain(data.username);
+                  done();
+              });
+          });
+    });
+});
+
+describe("Task Add/Edit Page", function () {
+    it("should display the add/update pages for tasks", function (done) {
+        request.get("/tasks/new")
+          .end(function(err, res) {
+              if(err){
+                  done(err);
+              }
+              knex("tasks").where("id", 1).first().then(function(data) {
+                  expect(res.text).to.contain(data.username);
+                  done();
+              });
+          });
+    });
+});
+
 //Hardly enough tests here, but it should work for the MVP
