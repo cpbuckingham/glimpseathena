@@ -21,13 +21,17 @@ router.get("/dashboard",  function (req, res) {
     knex.from("submissions").where({read: false, user_id: userID}).then(function (unread) {
         knex("users").where("id", userID).first().then(function (user){
           knex("employees").where("user_id", userID).then(function (employees){
+            knex.from("employees").leftJoin("tasks", "employees.id", "tasks.employee_id").where("employees.user_id", userID).then(function (tasks){
             knex.from("surveys").innerJoin("submissions", "surveys.id", "submissions.user_id").innerJoin("patients","patients.id", "patients.user_id").where("patients.user_id", userID).then(function (submissions){
                 res.render("dashboard/dashboard", {
                     user: user,
                     submissions: submissions,
                     unread: unread,
                     employees: employees,
+                    tasks: tasks,
                 });
+                console.log(tasks);
+              });
               });
             });
         });
