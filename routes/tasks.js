@@ -81,3 +81,5 @@ router.put("/:id" ,authorizedUser, function (req, res, next) {
         res.redirect("/auth/dashboard");
     });
 });
+
+module.exports = router;
