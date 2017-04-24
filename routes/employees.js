@@ -55,14 +55,10 @@ router.delete("/:id", function (req, res, next) {
 router.post("/", authorizedUser, function(req, res, next) {
     let userID = req.session.user.id;
     knex("employees").insert({
-            // email: req.body.email,
-            // full_name: req.body.full_name,
-            // avatar: created_avatar,
-            // address: req.body.address,
-            // city: req.body.city,
-            // state: req.body.state,
-            // postal_code: req.body.postal_code,
-        user_id: knex.select("id").from("users").where("id", userID)
+            user_id: knex.select("id").from("users").where("id", userID),
+            full_name: req.body.full_name,
+            role: req.body.role,
+            hire_date: req.body.hire_date,
     }).then(function (){
         res.redirect("/auth/dashboard");
     });
