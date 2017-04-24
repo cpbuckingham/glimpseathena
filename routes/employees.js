@@ -31,15 +31,19 @@ router.get("/new", authorizedUser, function (req, res, next) {
 
 router.get("/:id", authorizedUser, function (req, res, next) {
     let userID = req.session.user.id;
+    let employeeID = req.params.id;
     knex.from("submissions").where({read: false, user_id: userID}).then(function (unread) {
         knex("users").where("id", userID).first().then(function (user){
+          knex("employees").where("id", employeeID).first().then(function (employee){
             knex.from("surveys").innerJoin("submissions", "surveys.id", "submissions.user_id").innerJoin("patients","patients.id", "patients.user_id").where("patients.user_id", userID).then(function (submissions){
                 res.render("employees/single", {
                     userID: userID,
                     user: user,
                     submissions: submissions,
                     unread: unread,
+                    employee: employee,
                 });
+              });
             });
         });
     });
@@ -67,12 +71,9 @@ router.post("/", authorizedUser, function(req, res, next) {
 router.put("/:id" ,authorizedUser, function (req, res, next) {
     let employeeID = req.params.id;
     knex("employees").where("id", employeeID).update({
-        // email: req.body.email,
-        // full_name: req.body.full_name,
-        // address: req.body.address,
-        // city: req.body.city,
-        // state: req.body.state,
-        // postal_code: req.body.postal_code,
+        full_name: req.body.full_name,
+        role: req.body.role,
+        hire_date: req.body.hire_date,
     }).then(function (){
         res.redirect("/auth/dashboard");
     });

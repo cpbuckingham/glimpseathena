@@ -429,7 +429,7 @@
                      </h4>
                     <p class="category">All employees in the office</p>
                   </div>
-                  <div class="card-content table-responsive">
+                  <div class="card-content">
                     <table class="table table-hover">
                       <thead class="text-warning">
                         <th>Name</th>
@@ -437,38 +437,18 @@
                         <th>Hired Date</th>
                         <th></th>
                       </thead>
+                      <% employees.forEach(function (employee) { %>
                       <tbody>
                         <tr>
-                          <td>Dakota Rice</td>
-                          <td>Healthcare Assistant</td>
-                          <td>June, 2004</td>
+                          <td><%=employee.full_name%></td>
+                          <td><%=employee.role%></td>
+                          <td><%=employee.hire_date%></td>
                           <td>
-                            <button type="button" rel="tooltip" title="Edit Employee" class="btn btn-primary btn-simple btn-xs">
-                            <i class="material-icons">edit</i>
-                          </button>
+                            <a href="/employees/<%=employee.id%>" rel="tooltip" title="Edit Employee" class="btn btn-primary btn-simple btn-xs"><i class="material-icons">edit</i></a>
                         </td>
-                        </tr>
-                        <tr>
-                          <td>Grace Hooper</td>
-                          <td>Office Manager</td>
-                          <td>May, 2010</td>
-                          <td>
-                            <button type="button" rel="tooltip" title="Edit Employee" class="btn btn-primary btn-simple btn-xs">
-                            <i class="material-icons">edit</i>
-                          </button>
-                        </td>
-                        </tr>
-                        <tr>
-                          <td>Phillip Rodriguez</td>
-                          <td>Healthcare Assistant</td>
-                          <td>September, 2014</td>
-                          <td>
-                            <button type="button" rel="tooltip" title="Edit Employee" class="btn btn-primary btn-simple btn-xs">
-                            <i class="material-icons">edit</i>
-                          </button>
-                        </td>
-                        </tr>
+                      </tr>
                       </tbody>
+                      <% }) %>
                     </table>
                   </div>
                 </div>
