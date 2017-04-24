@@ -11,7 +11,7 @@ const bodyParser = require("body-parser");
 const cookieSession = require("cookie-session");
 const methodOverride = require("method-override");
 const flash = require("express-flash");
-const cookieParser = require('cookie-parser')
+const cookieParser = require("cookie-parser");
 
 const users = require("./routes/users");
 const auth = require("./routes/auth");
@@ -19,6 +19,8 @@ const patients = require("./routes/patients");
 const surveys = require("./routes/surveys");
 const submissions = require("./routes/submissions");
 const email = require("./routes/email");
+const employees = require("./routes/employees");
+const tasks = require("./routes/tasks");
 
 app.set("view engine", "ejs");
 app.use(express.static("public"));
@@ -35,13 +37,14 @@ app.use(function(req, res, next){
   next();
 });
 
-
 app.use("/users", users);
 app.use("/auth", auth);
 app.use("/patients", patients);
 app.use("/surveys", surveys);
 app.use("/submissions", submissions);
 app.use("/email", email);
+app.use("/employees", employees);
+app.use("/tasks", tasks);
 
 app.listen(port, function () {
     console.log("hello from", port);
