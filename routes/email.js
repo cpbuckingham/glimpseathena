@@ -1,6 +1,7 @@
 "use strict";
 /*eslint no-unused-vars: 0*/
 /*eslint no-undef: 0*/
+/*eslint no-dupe-keys: 0*/
 
 const express = require("express");
 const router = express.Router();

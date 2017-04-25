@@ -1,6 +1,6 @@
 Glimpse
 
-An app that helps physicans and pharmacists collect surveys from their patients based on their location.
+An app that helps physicians and pharmacists collect surveys from their patients based on their location.
 
 Tech Stack
 * Nodejs

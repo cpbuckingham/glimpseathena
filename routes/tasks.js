@@ -1,4 +1,5 @@
 "use strict";
+/*eslint no-unused-vars: 0*/
 
 const express = require("express");
 const router = express.Router();
@@ -17,16 +18,16 @@ router.get("/new", authorizedUser, function (req, res, next) {
     let userID = req.session.user.id;
     knex.from("submissions").where({read: false, user_id: userID}).then(function (unread) {
         knex("users").where("id", userID).first().then(function (user){
-          knex("employees").where("user_id", userID).then(function (employees){
-            knex.from("surveys").innerJoin("submissions", "surveys.id", "submissions.user_id").innerJoin("patients","patients.id", "patients.user_id").where("patients.user_id", userID).then(function (submissions){
-                res.render("tasks/new", {
-                    userID: userID,
-                    user: user,
-                    submissions: submissions,
-                    unread: unread,
-                    employees:employees,
+            knex("employees").where("user_id", userID).then(function (employees){
+                knex.from("surveys").innerJoin("submissions", "surveys.id", "submissions.user_id").innerJoin("patients","patients.id", "patients.user_id").where("patients.user_id", userID).then(function (submissions){
+                    res.render("tasks/new", {
+                        userID: userID,
+                        user: user,
+                        submissions: submissions,
+                        unread: unread,
+                        employees:employees,
+                    });
                 });
-              });
             });
         });
     });
@@ -58,9 +59,9 @@ router.delete("/:id", function (req, res, next) {
 router.post("/", authorizedUser, function(req, res, next) {
     let userID = req.session.user.id;
     knex("tasks").insert({
-            note: req.body.note,
-            user_id: knex.select("id").from("users").where("id", userID),
-            employee_id: knex("employees").where("full_name", req.body.full_name).select("id"),
+        note: req.body.note,
+        user_id: knex.select("id").from("users").where("id", userID),
+        employee_id: knex("employees").where("full_name", req.body.full_name).select("id"),
     }).then(function (){
         res.redirect("/auth/dashboard");
     });

@@ -33,8 +33,8 @@ app.use(cookieSession({
 app.use(cookieParser());
 app.use(flash());
 app.use(function(req, res, next){
-  res.locals.messages = req.flash();
-  next();
+    res.locals.messages = req.flash();
+    next();
 });
 
 app.use("/users", users);
