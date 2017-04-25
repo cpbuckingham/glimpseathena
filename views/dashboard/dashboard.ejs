@@ -185,20 +185,18 @@
                       <div class="nav-tabs-wrapper">
                         <span class="nav-tabs-title">Tasks:</span>
                         <ul class="nav nav-tabs" data-tabs="tabs">
-                          <% employees.forEach(function (employee) { %>
                           <li class="active">
-                            <a href="#<%=employee.id%>" data-toggle="tab">
-														<%=employee.full_name%>
+                            <a href="#profile" data-toggle="tab">
+														Dakota
 													<div class="ripple-container"></div></a>
                           </li>
-                          <% }) %>
                           <li class="">
-                            <a href="#2" data-toggle="tab">
+                            <a href="#messages" data-toggle="tab">
 														Grace
 													<div class="ripple-container"></div></a>
                           </li>
                           <li class="">
-                            <a href="#3" data-toggle="tab">
+                            <a href="#settings" data-toggle="tab">
 														Phillip
 													<div class="ripple-container"></div></a>
                         </li>
@@ -214,8 +212,7 @@
 
                   <div class="card-content">
                     <div class="tab-content">
-                      <% tasks.forEach(function (task) { %>
-                      <div class="tab-pane active" id="<%=task.employee_id%>">
+                      <div class="tab-pane active" id="profile">
                         <table class="table">
                           <tbody>
                             <tr>
@@ -276,8 +273,7 @@
                           </tbody>
                         </table>
                       </div>
-                      <% }) %>
-                      <div class="tab-pane" id="2">
+                      <div class="tab-pane" id="messages">
                         <table class="table">
                           <tbody>
                             <tr>
@@ -357,7 +353,7 @@
                           </tbody>
                         </table>
                       </div>
-                      <div class="tab-pane" id="3">
+                      <div class="tab-pane" id="settings">
                         <table class="table">
                           <tbody>
                             <tr>

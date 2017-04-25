@@ -11,7 +11,7 @@ function authorizedUser(req, res, next) {
     if(userID){
         next();
     } else {
-        res.render("404");
+        res.render("partials/404");
     }
 }
 

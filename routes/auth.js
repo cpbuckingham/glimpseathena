@@ -12,33 +12,32 @@ function authorizedUser(req, res, next) {
     if(userID){
         next();
     } else {
-        res.render("404");
+        res.render("partials/404");
     }
 }
 
-router.get("/dashboard",  function (req, res) {
+router.get("/dashboard", authorizedUser, function (req, res) {
     let userID = req.session.user.id;
     knex.from("submissions").where({read: false, user_id: userID}).then(function (unread) {
         knex("users").where("id", userID).first().then(function (user){
-          knex("employees").where("user_id", userID).then(function (employees){
-            knex.from("employees").leftJoin("tasks", "employees.id", "tasks.employee_id").where("employees.user_id", userID).then(function (tasks){
-            knex.from("surveys").innerJoin("submissions", "surveys.id", "submissions.user_id").innerJoin("patients","patients.id", "patients.user_id").where("patients.user_id", userID).then(function (submissions){
-                res.render("dashboard/dashboard", {
-                    user: user,
-                    submissions: submissions,
-                    unread: unread,
-                    employees: employees,
-                    tasks: tasks,
+            knex("employees").where("user_id", userID).then(function (employees){
+                knex.from("employees").leftJoin("tasks", "employees.id", "tasks.employee_id").where("employees.user_id", userID).then(function (tasks){
+                    knex.from("surveys").innerJoin("submissions", "surveys.id", "submissions.user_id").innerJoin("patients","patients.id", "patients.user_id").where("patients.user_id", userID).then(function (submissions){
+                        res.render("dashboard/dashboard", {
+                            user: user,
+                            submissions: submissions,
+                            unread: unread,
+                            employees: employees,
+                            tasks: tasks,
+                        });
+                    });
                 });
-                console.log(tasks);
-              });
-              });
             });
         });
     });
 });
 
-router.get("/patients",authorizedUser, function (req, res, next) {
+router.get("/patients", authorizedUser, function (req, res, next) {
     let userID = req.session.user.id;
     knex.from("submissions").where({read: false, user_id: userID}).then(function (unread) {
         knex("users").where("id", userID).first().then(function (user){
@@ -56,7 +55,7 @@ router.get("/patients",authorizedUser, function (req, res, next) {
     });
 });
 
-router.get("/user",authorizedUser, function (req, res, next) {
+router.get("/user", authorizedUser, function (req, res, next) {
     let userID = req.session.user.id;
     knex.from("submissions").where({read: false, user_id: userID}).then(function (unread) {
         knex("users").where("id", userID).first().then(function (user){
@@ -71,7 +70,7 @@ router.get("/user",authorizedUser, function (req, res, next) {
     });
 });
 
-router.get("/submissions",authorizedUser, function (req, res, next) {
+router.get("/submissions", authorizedUser, function (req, res, next) {
     let userID = req.session.user.id;
     knex.from("submissions").where({read: false, user_id: userID}).then(function (unread) {
         knex("users").where("id", userID).first().then(function (user){
@@ -90,7 +89,7 @@ router.get("/submissions",authorizedUser, function (req, res, next) {
 });
 
 
-router.get("/surveys",authorizedUser, function (req, res, next) {
+router.get("/surveys", authorizedUser, function (req, res, next) {
     let userID = req.session.user.id;
     knex.from("submissions").where({read: false, user_id: userID}).then(function (unread) {
         knex("users").where("id", userID).first().then(function (user){

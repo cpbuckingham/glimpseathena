@@ -5,23 +5,23 @@ exports.seed = function ( knex, Promise ) {
                 knex( "employees" ).insert( {
                     id:1,
                     user_id: 1,
-                    full_name: "Mark Buckingham",
-                    role: "Office Manager",
-                    hire_date: "July 28, 1954",
+                    full_name: "Mark",
+                    role: "Healthcare Professional",
+                    hire_date: "July 28, 2012",
                 } ),
                 knex( "employees" ).insert( {
                     id:2,
                     user_id: 1,
-                    full_name: "Melody Buckingham",
-                    role: "Office Director",
-                    hire_date: "August 27, 1954",
+                    full_name: "Melody",
+                    role: "Office Coordinator",
+                    hire_date: "August 27, 2017",
                 } ),
                 knex( "employees" ).insert( {
                     id:3,
-                    user_id: 2,
-                    full_name: "Jenna Buckingham",
-                    role: "Office Coordinator",
-                    hire_date: "October 22, 1975",
+                    user_id: 1,
+                    full_name: "Jenna",
+                    role: "Healthcare Professional",
+                    hire_date: "October 22, 2011",
                 } )
             ] );
         } );
