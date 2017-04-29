@@ -89,6 +89,33 @@ router.get("/submissions", authorizedUser, function (req, res, next) {
     });
 });
 
+router.get("/analysis", authorizedUser, function (req, res) {
+    let userID = req.session.user.id;
+    knex.from("submissions").where({read: false, user_id: userID}).then(function (unread) {
+        knex("submissions").where("survey_id", 1).then(function (count){
+            knex("users").where("id", userID).first().then(function (user){
+                knex("employees").where("user_id", userID).then(function (employees){
+                    knex("surveys").where("user_id", userID).then(function (surveys){
+                        knex.from("employees").leftJoin("tasks", "employees.id", "tasks.employee_id").where("employees.user_id", userID).then(function (tasks){
+                            knex.from("surveys").innerJoin("submissions", "surveys.id", "submissions.user_id").innerJoin("patients","patients.id", "patients.user_id").where("patients.user_id", userID).then(function (submissions){
+                                res.render("dashboard/analysis", {
+                                    user: user,
+                                    submissions: submissions,
+                                    unread: unread,
+                                    employees: employees,
+                                    tasks: tasks,
+                                    surveys: surveys,
+                                    count: count,
+                                });
+                                console.log(count.length);
+                            });
+                        });
+                    });
+                });
+            });
+        });
+    });
+});
 
 router.get("/surveys", authorizedUser, function (req, res, next) {
     let userID = req.session.user.id;

@@ -147,11 +147,19 @@
 										</div>
 
 										<div class="row">
-											<div class="col-md-12">
+											<div class="col-md-6">
 												<div class="form-group label-floating">
 													<label class="control-label">Address</label>
 													<input type="text" name="address" class="form-control" value="<%=patient.address%>" required>
 												</div>
+											</div>
+											<div class="input-field col-md-6">
+												<label class="control-label">Gender</label>
+												<select value="<%=survey.type%>" name="gender" required>
+																		<option value="" disabled selected><%=patient.gender%></option>
+																		<option value="male">Male</option>
+																		<option value="female">Female</option>
+																	</select>
 											</div>
 										</div>
 

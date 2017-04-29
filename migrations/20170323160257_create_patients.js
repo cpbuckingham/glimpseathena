@@ -5,6 +5,7 @@ exports.up = function(knex, Promise) {
         table.increments();
         table.integer("user_id").unsigned().index().references("id").inTable("users").onDelete("CASCADE");
         table.string("email").unique();
+        table.string("gender").unique();
         table.string("password").defaultTo("password123");
         table.string("full_name").defaultTo("");
         table.string("avatar");
